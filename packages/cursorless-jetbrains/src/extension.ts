@@ -7,6 +7,7 @@ import { JetbrainsTreeSitter } from "./ide/JetbrainsTreeSitter";
 import { JetbrainsTreeSitterQueryProvider } from "./ide/JetbrainsTreeSitterQueryProvider";
 import { pathJoin } from "./ide/pathJoin";
 import { JetbrainsCommandServer } from "./ide/JetbrainsCommandServer";
+import { JetbrainsSnippets } from "./ide/JetbrainsSnippets";
 
 export async function activate(
   plugin: JetbrainsPlugin,
@@ -29,6 +30,8 @@ export async function activate(
     treeSitterQueryProvider: queryProvider,
     treeSitter: new JetbrainsTreeSitter(wasmDirectory),
     commandServerApi: commandServerApi,
+    talonSpokenForms: plugin.talonSpokenForms,
+    snippets: new JetbrainsSnippets(plugin.client, plugin.ide),
   });
   console.log("activate completed");
   return engine;

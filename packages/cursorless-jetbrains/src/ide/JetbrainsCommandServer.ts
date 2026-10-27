@@ -20,6 +20,10 @@ export class JetbrainsCommandServer implements CommandServerApi {
   }
 
   getFocusedElementType(): Promise<FocusedElementType | undefined> {
-    return Promise.resolve(undefined);
+    // Anything other than "textEditor" makes the engine return a fallback for Talon to run as keystrokes
+    const type = this.client.getFocusedElementType();
+    return Promise.resolve(
+      type == null ? undefined : (type as FocusedElementType),
+    );
   }
 }

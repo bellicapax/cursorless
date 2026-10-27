@@ -69,7 +69,7 @@ export class JetbrainsIDE implements IDE {
     configuration: JetbrainsConfiguration,
   ) {
     this.configuration = configuration;
-    this.keyValueStore = new JetbrainsKeyValueStore();
+    this.keyValueStore = new JetbrainsKeyValueStore(this.client);
     this.messages = new JetbrainsMessages();
     this.clipboard = new JetbrainsClipboard(this.client);
     this.capabilities = new JetbrainsCapabilities();
@@ -184,8 +184,8 @@ export class JetbrainsIDE implements IDE {
     throw Error("openUntitledTextDocument Not implemented");
   }
 
-  public async showInputBox(_options?: any): Promise<string | undefined> {
-    throw Error("showInputBox Not implemented");
+  public async showInputBox(options?: any): Promise<string | undefined> {
+    return this.client.showInputBox(JSON.stringify(options ?? {})) ?? undefined;
   }
 
   public async executeCommand<T>(

@@ -4,19 +4,24 @@ import type {
   KeyValueStoreKey,
 } from "@cursorless/common";
 import { KEY_VALUE_STORE_DEFAULTS } from "@cursorless/common";
+import type { JetbrainsClient } from "./JetbrainsClient";
 
+/**
+ * Persisted by the IDE plugin, so values such as tutorial progress survive restarts.
+ */
 export class JetbrainsKeyValueStore implements KeyValueStore {
-  private readonly data: KeyValueStoreData = { ...KEY_VALUE_STORE_DEFAULTS };
+  constructor(private client: JetbrainsClient) {}
 
   get<K extends KeyValueStoreKey>(key: K): KeyValueStoreData[K] {
-    return this.data[key];
+    const valueJson = this.client.keyValueGet(key);
+    return valueJson == null ? KEY_VALUE_STORE_DEFAULTS[key] : JSON.parse(valueJson);
   }
 
   set<K extends KeyValueStoreKey>(
     key: K,
     value: KeyValueStoreData[K],
   ): Promise<void> {
-    this.data[key] = value;
+    this.client.keyValueSet(key, JSON.stringify(value));
     return Promise.resolve();
   }
 }
