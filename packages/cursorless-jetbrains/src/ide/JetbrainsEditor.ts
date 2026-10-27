@@ -1,12 +1,13 @@
 import type { Selection } from "@cursorless/common";
 import {
+  Position,
+  Range,
   selectionsEqual,
   type Edit,
   type EditableTextEditor,
   type GeneralizedRange,
   type InMemoryTextDocument,
   type OpenLinkOptions,
-  type Range,
   type RevealLineAt,
   type SetSelectionsOpts,
   type TextEditor,
@@ -94,8 +95,8 @@ export class JetbrainsEditor implements EditableTextEditor {
     await this.client.insertLineAfter(this.id, JSON.stringify(ranges));
   }
 
-  focus(): Promise<void> {
-    throw new Error("focus not implemented.");
+  async focus(): Promise<void> {
+    await this.client.focusEditor(this.id);
   }
 
   revealRange(_range: Range): Promise<void> {
@@ -140,9 +141,22 @@ export class JetbrainsEditor implements EditableTextEditor {
   }
 
   async toggleBreakpoint(
-    _ranges?: GeneralizedRange[] | undefined,
+    ranges?: GeneralizedRange[] | undefined,
   ): Promise<void> {
-    throw new Error("toggleBreakpoint not implemented.");
+    // ToggleLineBreakpoint acts on the caret's line, so toggle one range at a time
+    for (const range of ranges ?? []) {
+      const position =
+        range.type === "line"
+          ? new Position(range.start, 0)
+          : range.start;
+      const command = new JetbrainsEditorCommand(
+        [new Range(position, position)],
+        true,
+        false,
+        "ToggleLineBreakpoint",
+      );
+      await this.client.executeRangeCommand(this.id, JSON.stringify(command));
+    }
   }
 
   async toggleLineComment(ranges?: Range[] | undefined): Promise<void> {
@@ -217,12 +231,24 @@ export class JetbrainsEditor implements EditableTextEditor {
     await this.client.executeRangeCommand(this.id, JSON.stringify(command));
   }
 
-  showHover(_range?: Range | undefined): Promise<void> {
-    throw new Error("showHover not implemented.");
+  async showHover(range?: Range | undefined): Promise<void> {
+    const command = new JetbrainsEditorCommand(
+      range ? [range] : [],
+      true,
+      false,
+      "QuickJavaDoc",
+    );
+    await this.client.executeRangeCommand(this.id, JSON.stringify(command));
   }
 
-  showDebugHover(_range?: Range | undefined): Promise<void> {
-    throw new Error("showDebugHover not implemented.");
+  async showDebugHover(range?: Range | undefined): Promise<void> {
+    const command = new JetbrainsEditorCommand(
+      range ? [range] : [],
+      true,
+      false,
+      "QuickEvaluateExpression",
+    );
+    await this.client.executeRangeCommand(this.id, JSON.stringify(command));
   }
 
   async extractVariable(range?: Range | undefined): Promise<void> {

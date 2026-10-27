@@ -13,4 +13,7 @@ export interface JetbrainsClient {
   readQuery(filename: string): string | undefined;
   flashRanges(flashRangesJson: string): string | undefined;
   setHighlightRanges(highlightId: string | undefined, editorId: string, rangesJson: string): void;
+  findInDocument(editorId: string, query: string): void;
+  findInWorkspace(editorId: string, query: string): void;
+  focusEditor(editorId: string): void;
 }
