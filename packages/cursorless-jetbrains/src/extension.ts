@@ -8,6 +8,7 @@ import { JetbrainsTreeSitterQueryProvider } from "./ide/JetbrainsTreeSitterQuery
 import { pathJoin } from "./ide/pathJoin";
 import { JetbrainsCommandServer } from "./ide/JetbrainsCommandServer";
 import { JetbrainsSnippets } from "./ide/JetbrainsSnippets";
+import { JetbrainsScopeVisualizer } from "./ide/JetbrainsScopeVisualizer";
 
 export async function activate(
   plugin: JetbrainsPlugin,
@@ -33,6 +34,10 @@ export async function activate(
     talonSpokenForms: plugin.talonSpokenForms,
     snippets: new JetbrainsSnippets(plugin.client, plugin.ide),
   });
+  plugin.scopeVisualizer = new JetbrainsScopeVisualizer(
+    plugin.client,
+    engine.scopeProvider,
+  );
   console.log("activate completed");
   return engine;
 }
