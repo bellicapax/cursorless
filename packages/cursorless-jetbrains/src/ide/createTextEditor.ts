@@ -22,8 +22,15 @@ export function createTextEditor(
   const uri = URI.parse(`talon-jetbrains://${id}`);
   const languageId = editorState.languageId ?? "plaintext";
   const document = new InMemoryTextDocument(uri, languageId, editorState.text);
+  // Through the end of the last visible line, as updateEditor does; ending at its start left that line unhatted
+  // until the editor's next update
   const visibleRanges = [
-    new Range(editorState.firstVisibleLine, 0, editorState.lastVisibleLine, 0),
+    new Range(
+      editorState.firstVisibleLine,
+      0,
+      editorState.lastVisibleLine + 1,
+      0,
+    ),
   ];
   const selections = editorState.selections.map((selection) =>
     createSelection(document, selection),

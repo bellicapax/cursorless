@@ -4,11 +4,13 @@ export interface JetbrainsClient {
   /** Returns the paste's edits as JSON [{rangeOffset, rangeLength, text}], in the order they were made */
   clipboardPaste(editorId: string): string | undefined;
   hatsUpdated(hatsJson: string): void;
-  documentUpdated(editorId: string, updateJson: string): void;
+  /** Applies the edit; returns the editor's selections afterwards as JSON, since the IDE moves carets as text changes */
+  documentUpdated(editorId: string, updateJson: string): string | undefined;
   setSelection(editorId: string, selectionJson: string): void;
-  executeCommand(editorId: string, command: string, jsonArgs: string): string;
-  executeRangeCommand(editorId: string, commandJson: string): string;
-  insertLineAfter(editorId: string, rangesJson: string): void;
+  /** These run an IDE action; they return JSON {changes, selections}: its document edits, in order, and the carets after */
+  executeCommand(editorId: string, command: string, jsonArgs: string): string | undefined;
+  executeRangeCommand(editorId: string, commandJson: string): string | undefined;
+  insertLineAfter(editorId: string, rangesJson: string): string | undefined;
   insertSnippet(editorId: string, snippet: string): void;
   revealLine(editorId: string, line: number, revealAt: string): void;
   readQuery(filename: string): string | undefined;
@@ -27,7 +29,10 @@ export interface JetbrainsClient {
   commandHistoryAppend(fileName: string, entryJson: string): void;
   /** Every command history entry, oldest file first, as a JSON array */
   commandHistoryEntries(): string;
-  /** Opens a new scratch editor with this content; returns its editor state JSON */
+  /**
+   * Opens a new scratch editor with this content. Returns JSON {editor, hiddenEditorIds}: its editor state, and the
+   * editors its tab replaced on screen
+   */
   openUntitledTextDocument(content: string, language: string | null): string;
   showMessage(type: string, id: string, message: string): void;
   /** The JetBrains plugin's version, for command history entries */

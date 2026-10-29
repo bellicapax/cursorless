@@ -18,6 +18,8 @@ import type { JetbrainsIDE } from "./JetbrainsIDE";
 import { jetbrainsPerformEdits } from "./jetbrainsPerformEdits";
 import type { JetbrainsClient } from "./JetbrainsClient";
 import { JetbrainsEditorCommand } from "./JetbrainsEditorCommand";
+import { createSelection } from "./createTextEditor";
+import type { JbSelection } from "../types/types";
 
 export class JetbrainsEditor implements EditableTextEditor {
   options: TextEditorOptions = {
@@ -47,10 +49,10 @@ export class JetbrainsEditor implements EditableTextEditor {
     selections: Selection[],
     _opts?: SetSelectionsOpts,
   ): Promise<void> {
-    // console.log("editor.setSelections");
     if (!selectionsEqual(this.selections, selections)) {
       await setSelections(this.client, this.document, this.id, selections);
       this.selections = selections;
+      this.ide.selectionsChanged(this);
     }
   }
 
@@ -59,28 +61,40 @@ export class JetbrainsEditor implements EditableTextEditor {
     if (!this.isWritable) {
       return Promise.resolve(false);
     }
-    jetbrainsPerformEdits(this.client, this.ide, this.document, this.id, edits);
+    const selectionsJson = jetbrainsPerformEdits(
+      this.client,
+      this.ide,
+      this.document,
+      this.id,
+      edits,
+    );
+    // The IDE moved its carets with the edit; keep ours in step, or a later setSelections that matches our stale
+    // copy is skipped and the carets stay where the edit put them
+    if (selectionsJson) {
+      this.updateSelections(JSON.parse(selectionsJson));
+    }
     return Promise.resolve(true);
   }
 
-  async clipboardCopy(ranges: Range[]): Promise<void> {
-    await this.ide.clipboard.copy(this.id, ranges);
-  }
-
-  async clipboardPaste(): Promise<void> {
-    // The IDE pastes with its own paste action and returns the edits it made. Report them now, as VS Code does
-    // before its paste command resolves: the IDE's own change notification comes later and covers the whole
-    // visible range, so ranges the engine tracks (the "that" mark and the flash) would miss the pasted text
-    const changesJson = this.client.clipboardPaste(this.id);
-    if (!changesJson) {
+  /**
+   * Applies what an IDE action did (JSON {changes, selections} from the client) to our copy of the editor, as VS Code
+   * has it before its command resolves. The IDE's own report of the editor comes later, so without this the engine
+   * would act on the text before the action, e.g. a tutorial step that edits the document right after "pour"
+   */
+  applyIdeEdits(resultJson: string | null | undefined) {
+    if (!resultJson) {
       return;
     }
-    const pasteChanges = JSON.parse(changesJson) as {
-      rangeOffset: number;
-      rangeLength: number;
-      text: string;
-    }[];
-    for (const { rangeOffset, rangeLength, text } of pasteChanges) {
+    const { changes, selections } = JSON.parse(resultJson) as {
+      changes: IdeChange[];
+      selections: JbSelection[];
+    };
+    this.applyChanges(changes);
+    this.updateSelections(selections);
+  }
+
+  private applyChanges(changes: IdeChange[]) {
+    for (const { rangeOffset, rangeLength, text } of changes) {
       const range = new Range(
         this.document.positionAt(rangeOffset),
         this.document.positionAt(rangeOffset + rangeLength),
@@ -93,6 +107,30 @@ export class JetbrainsEditor implements EditableTextEditor {
     }
   }
 
+  private updateSelections(jbSelections: JbSelection[]) {
+    const selections = jbSelections.map((selection) =>
+      createSelection(this.document, selection),
+    );
+    if (!selectionsEqual(this.selections, selections)) {
+      this.selections = selections;
+      this.ide.selectionsChanged(this);
+    }
+  }
+
+  async clipboardCopy(ranges: Range[]): Promise<void> {
+    await this.ide.clipboard.copy(this.id, ranges);
+  }
+
+  async clipboardPaste(): Promise<void> {
+    // The IDE pastes with its own paste action and returns the edits it made. Report them now, as VS Code does
+    // before its paste command resolves: the IDE's own change notification comes later and covers the whole
+    // visible range, so ranges the engine tracks (the "that" mark and the flash) would miss the pasted text
+    const changesJson = this.client.clipboardPaste(this.id);
+    if (changesJson) {
+      this.applyChanges(JSON.parse(changesJson));
+    }
+  }
+
   async indentLine(ranges: Range[]): Promise<void> {
     const command = new JetbrainsEditorCommand(
       ranges ? ranges : [],
@@ -100,7 +138,9 @@ export class JetbrainsEditor implements EditableTextEditor {
       true,
       "EditorIndentSelection",
     );
-    await this.client.executeRangeCommand(this.id, JSON.stringify(command));
+    this.applyIdeEdits(
+      this.client.executeRangeCommand(this.id, JSON.stringify(command)),
+    );
   }
 
   async outdentLine(ranges: Range[]): Promise<void> {
@@ -110,15 +150,20 @@ export class JetbrainsEditor implements EditableTextEditor {
       true,
       "EditorUnindentSelection",
     );
-    await this.client.executeRangeCommand(this.id, JSON.stringify(command));
+    this.applyIdeEdits(
+      this.client.executeRangeCommand(this.id, JSON.stringify(command)),
+    );
   }
 
   async insertLineAfter(ranges?: Range[]): Promise<void> {
-    await this.client.insertLineAfter(this.id, JSON.stringify(ranges));
+    this.applyIdeEdits(
+      this.client.insertLineAfter(this.id, JSON.stringify(ranges)),
+    );
   }
 
   async focus(): Promise<void> {
     await this.client.focusEditor(this.id);
+    this.ide.setActiveEditor(this, true);
   }
 
   revealRange(_range: Range): Promise<void> {
@@ -139,7 +184,9 @@ export class JetbrainsEditor implements EditableTextEditor {
       false,
       "GotoDeclaration",
     );
-    await this.client.executeRangeCommand(this.id, JSON.stringify(command));
+    this.applyIdeEdits(
+      this.client.executeRangeCommand(this.id, JSON.stringify(command)),
+    );
   }
 
   async fold(ranges?: Range[] | undefined): Promise<void> {
@@ -149,7 +196,9 @@ export class JetbrainsEditor implements EditableTextEditor {
       false,
       "CollapseRegion",
     );
-    await this.client.executeRangeCommand(this.id, JSON.stringify(command));
+    this.applyIdeEdits(
+      this.client.executeRangeCommand(this.id, JSON.stringify(command)),
+    );
   }
 
   async unfold(ranges?: Range[] | undefined): Promise<void> {
@@ -159,7 +208,9 @@ export class JetbrainsEditor implements EditableTextEditor {
       false,
       "ExpandRegion",
     );
-    await this.client.executeRangeCommand(this.id, JSON.stringify(command));
+    this.applyIdeEdits(
+      this.client.executeRangeCommand(this.id, JSON.stringify(command)),
+    );
   }
 
   async toggleBreakpoint(
@@ -177,7 +228,9 @@ export class JetbrainsEditor implements EditableTextEditor {
         false,
         "ToggleLineBreakpoint",
       );
-      await this.client.executeRangeCommand(this.id, JSON.stringify(command));
+      this.applyIdeEdits(
+        this.client.executeRangeCommand(this.id, JSON.stringify(command)),
+      );
     }
   }
 
@@ -188,7 +241,9 @@ export class JetbrainsEditor implements EditableTextEditor {
       false,
       "CommentByLineComment",
     );
-    await this.client.executeRangeCommand(this.id, JSON.stringify(command));
+    this.applyIdeEdits(
+      this.client.executeRangeCommand(this.id, JSON.stringify(command)),
+    );
   }
 
   async insertSnippet(
@@ -210,7 +265,9 @@ export class JetbrainsEditor implements EditableTextEditor {
       false,
       "RenameElement",
     );
-    await this.client.executeRangeCommand(this.id, JSON.stringify(command));
+    this.applyIdeEdits(
+      this.client.executeRangeCommand(this.id, JSON.stringify(command)),
+    );
   }
 
   async showReferences(range?: Range | undefined): Promise<void> {
@@ -220,7 +277,9 @@ export class JetbrainsEditor implements EditableTextEditor {
       false,
       "FindUsages",
     );
-    await this.client.executeRangeCommand(this.id, JSON.stringify(command));
+    this.applyIdeEdits(
+      this.client.executeRangeCommand(this.id, JSON.stringify(command)),
+    );
   }
 
   async quickFix(range?: Range | undefined): Promise<void> {
@@ -230,7 +289,9 @@ export class JetbrainsEditor implements EditableTextEditor {
       false,
       "ShowIntentionActions",
     );
-    await this.client.executeRangeCommand(this.id, JSON.stringify(command));
+    this.applyIdeEdits(
+      this.client.executeRangeCommand(this.id, JSON.stringify(command)),
+    );
   }
 
   async revealDefinition(range?: Range | undefined): Promise<void> {
@@ -240,7 +301,9 @@ export class JetbrainsEditor implements EditableTextEditor {
       false,
       "GotoDeclaration",
     );
-    await this.client.executeRangeCommand(this.id, JSON.stringify(command));
+    this.applyIdeEdits(
+      this.client.executeRangeCommand(this.id, JSON.stringify(command)),
+    );
   }
 
   async revealTypeDefinition(range?: Range | undefined): Promise<void> {
@@ -250,7 +313,9 @@ export class JetbrainsEditor implements EditableTextEditor {
       false,
       "QuickImplementations",
     );
-    await this.client.executeRangeCommand(this.id, JSON.stringify(command));
+    this.applyIdeEdits(
+      this.client.executeRangeCommand(this.id, JSON.stringify(command)),
+    );
   }
 
   async showHover(range?: Range | undefined): Promise<void> {
@@ -260,7 +325,9 @@ export class JetbrainsEditor implements EditableTextEditor {
       false,
       "QuickJavaDoc",
     );
-    await this.client.executeRangeCommand(this.id, JSON.stringify(command));
+    this.applyIdeEdits(
+      this.client.executeRangeCommand(this.id, JSON.stringify(command)),
+    );
   }
 
   async showDebugHover(range?: Range | undefined): Promise<void> {
@@ -270,7 +337,9 @@ export class JetbrainsEditor implements EditableTextEditor {
       false,
       "QuickEvaluateExpression",
     );
-    await this.client.executeRangeCommand(this.id, JSON.stringify(command));
+    this.applyIdeEdits(
+      this.client.executeRangeCommand(this.id, JSON.stringify(command)),
+    );
   }
 
   async extractVariable(range?: Range | undefined): Promise<void> {
@@ -280,7 +349,9 @@ export class JetbrainsEditor implements EditableTextEditor {
       false,
       "IntroduceVariable",
     );
-    await this.client.executeRangeCommand(this.id, JSON.stringify(command));
+    this.applyIdeEdits(
+      this.client.executeRangeCommand(this.id, JSON.stringify(command)),
+    );
   }
 
   editNewNotebookCellAbove(): Promise<void> {
@@ -314,4 +385,11 @@ export class JetbrainsEditor implements EditableTextEditor {
   async gitUnstageRange(_range?: Range): Promise<void> {
     throw new Error("gitUnstageRange not implemented.");
   }
+}
+
+/** An edit the IDE made, at an offset into the text as it was just before */
+interface IdeChange {
+  rangeOffset: number;
+  rangeLength: number;
+  text: string;
 }

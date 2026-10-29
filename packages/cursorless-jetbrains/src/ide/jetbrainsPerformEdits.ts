@@ -10,7 +10,7 @@ export function jetbrainsPerformEdits(
   document: InMemoryTextDocument,
   id: string,
   edits: Edit[],
-) {
+): string | undefined {
   const changes = document.edit(edits);
 
   const editorEdit: EditorEdit = {
@@ -22,11 +22,13 @@ export function jetbrainsPerformEdits(
     })),
   };
 
-  client.documentUpdated(id, JSON.stringify(editorEdit));
+  const selectionsJson = client.documentUpdated(id, JSON.stringify(editorEdit));
   //jetbrains.actions.user.cursorless_everywhere_edit_text(editorEdit);
 
   ide.emitDidChangeTextDocument({
     document,
     contentChanges: changes,
   });
+
+  return selectionsJson;
 }
