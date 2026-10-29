@@ -8,6 +8,8 @@ import { pathJoin } from "./ide/pathJoin";
 import { JetbrainsCommandServer } from "./ide/JetbrainsCommandServer";
 import { JetbrainsSnippets } from "./ide/JetbrainsSnippets";
 import { JetbrainsScopeVisualizer } from "./ide/JetbrainsScopeVisualizer";
+import { TutorialImpl } from "@cursorless/lib-tutorial";
+import { JetbrainsTutorialContentProvider } from "./ide/JetbrainsTutorialContentProvider";
 
 export async function activate(
   plugin: JetbrainsPlugin,
@@ -45,6 +47,22 @@ export async function activate(
     plugin.client,
     engine.scopeProvider,
   );
+
+  // The tutorial, as the VS Code extension creates it; the Cursorless tool window shows its state
+  const tutorial = new TutorialImpl(
+    plugin.ide,
+    engine.hatTokenMap,
+    engine.customSpokenFormGenerator,
+    new JetbrainsTutorialContentProvider(plugin.client),
+    plugin.hats,
+  );
+  engine.addCommandRunnerDecorator(tutorial);
+  tutorial.onState((state) =>
+    plugin.client.tutorialStateChanged(JSON.stringify(state)),
+  );
+  plugin.scopeVisualizer.onDidChangeScopeType = (scopeType) =>
+    tutorial.scopeTypeVisualized(scopeType);
+  plugin.tutorial = tutorial;
   console.log("activate completed");
   return engine;
 }

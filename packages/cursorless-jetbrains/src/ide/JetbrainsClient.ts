@@ -32,4 +32,8 @@ export interface JetbrainsClient {
   showMessage(type: string, id: string, message: string): void;
   /** The JetBrains plugin's version, for command history entries */
   pluginVersion(): string;
+  /** A tutorial fixture bundled with the plugin, parsed from YAML, as JSON */
+  readTutorialFixture(tutorialId: string, fixtureName: string): string;
+  /** The tutorial's state changed: the Cursorless tool window shows it */
+  tutorialStateChanged(stateJson: string): void;
 }

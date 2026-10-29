@@ -309,6 +309,9 @@ importers:
       '@cursorless/lib-test-case-recorder':
         specifier: workspace:*
         version: link:../lib-test-case-recorder
+      '@cursorless/lib-tutorial':
+        specifier: workspace:*
+        version: link:../lib-tutorial
       lodash-es:
         specifier: ^4.17.21
         version: 4.18.1

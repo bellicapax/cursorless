@@ -24,6 +24,7 @@
     "@cursorless/lib-common": "workspace:*",
     "@cursorless/lib-engine": "workspace:*",
     "@cursorless/lib-test-case-recorder": "workspace:*",
+    "@cursorless/lib-tutorial": "workspace:*",
     "lodash-es": "^4.17.21",
     "vscode-uri": "^3.1.0",
     "web-tree-sitter": "^0.27.1"

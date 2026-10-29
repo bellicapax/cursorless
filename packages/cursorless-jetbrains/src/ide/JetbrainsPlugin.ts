@@ -1,4 +1,9 @@
-import type { CheatsheetInfo } from "@cursorless/lib-common";
+import type {
+  CheatsheetInfo,
+  TutorialId,
+  TutorialState,
+} from "@cursorless/lib-common";
+import type { Tutorial } from "@cursorless/lib-tutorial";
 import {
   getCheatsheetInfo,
   getDefaultCheatsheetInfo,
@@ -17,6 +22,9 @@ export class JetbrainsPlugin {
 
   readonly commandHistoryStorage: JetbrainsCommandHistoryStorage;
 
+  /** Set by activate, once the engine exists */
+  tutorial: Tutorial | undefined;
+
   constructor(
     readonly client: JetbrainsClient,
     readonly ide: JetbrainsIDE,
@@ -24,6 +32,43 @@ export class JetbrainsPlugin {
     readonly talonSpokenForms: JetbrainsTalonSpokenForms,
   ) {
     this.commandHistoryStorage = new JetbrainsCommandHistoryStorage(client);
+  }
+
+  /**
+   * Talon's tutorial commands (cursorless.tutorial.*). The Cursorless tool window shows the state; start takes a
+   * tutorial id or, from "tutorial <number>", its zero-based position.
+   */
+  async tutorialStart(id: TutorialId | number): Promise<void> {
+    await this.tutorial?.start(id);
+  }
+
+  async tutorialNext(): Promise<void> {
+    await this.tutorial?.next();
+  }
+
+  async tutorialPrevious(): Promise<void> {
+    await this.tutorial?.previous();
+  }
+
+  async tutorialRestart(): Promise<void> {
+    await this.tutorial?.restart();
+  }
+
+  async tutorialResume(): Promise<void> {
+    await this.tutorial?.resume();
+  }
+
+  async tutorialList(): Promise<void> {
+    await this.tutorial?.list();
+  }
+
+  /** "cursorless docs" opened the documentation, which a tutorial step may be waiting for */
+  documentationOpened(): void {
+    this.tutorial?.documentationOpened();
+  }
+
+  tutorialState(): TutorialState {
+    return this.tutorial?.state ?? { type: "loading" };
   }
 
   /** Talon's "cursorless stats": opens a report of the command history, as the VS Code extension does */
