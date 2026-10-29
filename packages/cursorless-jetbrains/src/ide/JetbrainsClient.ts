@@ -23,4 +23,13 @@ export interface JetbrainsClient {
   readTalonSpokenForms(): string | null;
   showInputBox(optionsJson: string): string | null;
   openSnippetFile(snippetName: string, directory: string): string;
+  /** Appends one JSON line to the named command history file */
+  commandHistoryAppend(fileName: string, entryJson: string): void;
+  /** Every command history entry, oldest file first, as a JSON array */
+  commandHistoryEntries(): string;
+  /** Opens a new scratch editor with this content; returns its editor state JSON */
+  openUntitledTextDocument(content: string, language: string | null): string;
+  showMessage(type: string, id: string, message: string): void;
+  /** The JetBrains plugin's version, for command history entries */
+  pluginVersion(): string;
 }

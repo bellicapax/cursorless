@@ -70,7 +70,7 @@ export class JetbrainsIDE implements IDE {
   ) {
     this.configuration = configuration;
     this.keyValueStore = new JetbrainsKeyValueStore(this.client);
-    this.messages = new JetbrainsMessages();
+    this.messages = new JetbrainsMessages(this.client);
     this.clipboard = new JetbrainsClipboard(this.client);
     this.capabilities = new JetbrainsCapabilities();
     //     this.editorMap = new Map<Window, JetbrainsTextEditorImpl>();
@@ -117,8 +117,7 @@ export class JetbrainsIDE implements IDE {
   }
 
   get cursorlessVersion(): string {
-    console.log("get cursorlessVersion");
-    throw new Error("cursorlessVersion not implemented.");
+    return `jetbrains-${this.client.pluginVersion()}`;
   }
 
   get workspaceFolders(): readonly WorkspaceFolder[] | undefined {
@@ -179,9 +178,15 @@ export class JetbrainsIDE implements IDE {
   }
 
   public async openUntitledTextDocument(
-    _options: OpenUntitledTextDocumentOptions,
+    options: OpenUntitledTextDocumentOptions = {},
   ): Promise<TextEditor> {
-    throw Error("openUntitledTextDocument Not implemented");
+    const editorState: EditorState = JSON.parse(
+      this.client.openUntitledTextDocument(
+        options.content ?? "",
+        options.language ?? null,
+      ),
+    );
+    return this.updateTextEditors(editorState);
   }
 
   public async showInputBox(options?: any): Promise<string | undefined> {

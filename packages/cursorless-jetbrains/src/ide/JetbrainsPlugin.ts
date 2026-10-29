@@ -3,6 +3,8 @@ import {
   getCheatsheetInfo,
   getDefaultCheatsheetInfo,
 } from "@cursorless/lib-common";
+import { analyzeCommandHistory } from "@cursorless/lib-engine";
+import { JetbrainsCommandHistoryStorage } from "./JetbrainsCommandHistoryStorage";
 import type { JetbrainsClient } from "./JetbrainsClient";
 import { JetbrainsHats } from "./JetbrainsHats";
 import type { JetbrainsIDE } from "./JetbrainsIDE";
@@ -13,12 +15,21 @@ export class JetbrainsPlugin {
   /** Set by activate, once the engine's scope provider exists */
   scopeVisualizer: JetbrainsScopeVisualizer | undefined;
 
+  readonly commandHistoryStorage: JetbrainsCommandHistoryStorage;
+
   constructor(
     readonly client: JetbrainsClient,
     readonly ide: JetbrainsIDE,
     readonly hats: JetbrainsHats,
     readonly talonSpokenForms: JetbrainsTalonSpokenForms,
-  ) {}
+  ) {
+    this.commandHistoryStorage = new JetbrainsCommandHistoryStorage(client);
+  }
+
+  /** Talon's "cursorless stats": opens a report of the command history, as the VS Code extension does */
+  async analyzeCommandHistory(): Promise<void> {
+    await analyzeCommandHistory(this.ide, this.commandHistoryStorage);
+  }
 
   /**
    * The cheat sheet for Talon's "cursorless cheat sheet", built from the user's spoken forms as the VS Code

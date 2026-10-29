@@ -1,5 +1,5 @@
 import type { CursorlessEngine } from "@cursorless/lib-engine";
-import { createCursorlessEngine } from "@cursorless/lib-engine";
+import { CommandHistory, createCursorlessEngine } from "@cursorless/lib-engine";
 import type { JetbrainsPlugin } from "./ide/JetbrainsPlugin";
 import { Parser } from "web-tree-sitter";
 import { JetbrainsTreeSitter } from "./ide/JetbrainsTreeSitter";
@@ -33,6 +33,14 @@ export async function activate(
     talonSpokenForms: plugin.talonSpokenForms,
     snippets: new JetbrainsSnippets(plugin.client, plugin.ide),
   });
+  // Records each command when the commandHistory setting is on, for "cursorless stats"
+  engine.addCommandRunnerDecorator(
+    new CommandHistory(
+      plugin.ide,
+      plugin.commandHistoryStorage,
+      commandServerApi,
+    ),
+  );
   plugin.scopeVisualizer = new JetbrainsScopeVisualizer(
     plugin.client,
     engine.scopeProvider,
