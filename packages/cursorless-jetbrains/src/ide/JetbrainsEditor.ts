@@ -68,7 +68,29 @@ export class JetbrainsEditor implements EditableTextEditor {
   }
 
   async clipboardPaste(): Promise<void> {
-    await this.ide.clipboard.paste(this.id);
+    // The IDE pastes with its own paste action and returns the edits it made. Report them now, as VS Code does
+    // before its paste command resolves: the IDE's own change notification comes later and covers the whole
+    // visible range, so ranges the engine tracks (the "that" mark and the flash) would miss the pasted text
+    const changesJson = this.client.clipboardPaste(this.id);
+    if (!changesJson) {
+      return;
+    }
+    const pasteChanges = JSON.parse(changesJson) as {
+      rangeOffset: number;
+      rangeLength: number;
+      text: string;
+    }[];
+    for (const { rangeOffset, rangeLength, text } of pasteChanges) {
+      const range = new Range(
+        this.document.positionAt(rangeOffset),
+        this.document.positionAt(rangeOffset + rangeLength),
+      );
+      const contentChanges = this.document.edit([{ range, text }]);
+      this.ide.emitDidChangeTextDocument({
+        document: this.document,
+        contentChanges,
+      });
+    }
   }
 
   async indentLine(ranges: Range[]): Promise<void> {

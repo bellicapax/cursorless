@@ -1,7 +1,8 @@
 export interface JetbrainsClient {
   prePhraseVersion(): string | PromiseLike<string | null> | null;
   clipboardCopy(editorId: string, rangesJson: string): void;
-  clipboardPaste(editorId: string): void;
+  /** Returns the paste's edits as JSON [{rangeOffset, rangeLength, text}], in the order they were made */
+  clipboardPaste(editorId: string): string | undefined;
   hatsUpdated(hatsJson: string): void;
   documentUpdated(editorId: string, updateJson: string): void;
   setSelection(editorId: string, selectionJson: string): void;
