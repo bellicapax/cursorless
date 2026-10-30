@@ -4,6 +4,7 @@ import {
   Range,
   Selection,
   type TextDocument,
+  type TextEditorOptions,
 } from "@cursorless/lib-common";
 import { URI } from "vscode-uri";
 import type { EditorState, JbPosition, JbSelection } from "../types/types";
@@ -50,8 +51,17 @@ export function createTextEditor(
   editor.isVisible = editorState.visible;
   editor.isEditable = editorState.editable;
   editor.isWritable = editorState.writable;
-  
+  editor.options = editorOptions(editorState);
+
   return editor;
+}
+
+/** The editor's indent settings from the IDE, used by actions that indent (e.g. "pour", snippets) */
+export function editorOptions(editorState: EditorState): TextEditorOptions {
+  return {
+    tabSize: editorState.tabSize ?? 4,
+    insertSpaces: editorState.insertSpaces ?? true,
+  };
 }
 
 export function createSelection(

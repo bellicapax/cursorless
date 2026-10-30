@@ -32,7 +32,11 @@ import type { JetbrainsConfiguration } from "./JetbrainsConfiguration";
 import { JetbrainsMessages } from "./JetbrainsMessages";
 import { JetbrainsKeyValueStore } from "./JetbrainsKeyValueStore";
 import type { EditorState } from "../types/types";
-import { createSelection, createTextEditor } from "./createTextEditor";
+import {
+  createSelection,
+  createTextEditor,
+  editorOptions,
+} from "./createTextEditor";
 import { JetbrainsEditor } from "./JetbrainsEditor";
 import type { JetbrainsFlashDescriptor } from "./JetbrainsFlashDescriptor";
 
@@ -397,6 +401,7 @@ function updateEditor(editor: JetbrainsEditor, editorState: EditorState) {
   editor.isVisible = editorState.visible;
   editor.isEditable = editorState.editable;
   editor.isWritable = editorState.writable;
+  editor.options = editorOptions(editorState);
 }
 
 /** The span of [oldDocument] that differs from [newText], as one change, or undefined if the text is the same */

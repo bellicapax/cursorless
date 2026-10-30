@@ -166,7 +166,8 @@ export class JetbrainsEditor implements EditableTextEditor {
     this.ide.setActiveEditor(this, true);
   }
 
-  revealRange(_range: Range): Promise<void> {
+  revealRange(range: Range): Promise<void> {
+    this.client.revealRange(this.id, JSON.stringify(range));
     return Promise.resolve();
   }
 
@@ -178,6 +179,13 @@ export class JetbrainsEditor implements EditableTextEditor {
     range: Range,
     _options?: OpenLinkOptions | undefined,
   ): Promise<void> {
+    // Like VS Code's editor.action.openLink: a URL at the target opens in the browser; otherwise go to the
+    // declaration, which is how the IDE follows a symbol or a file reference
+    const url = this.urlAt(range);
+    if (url != null) {
+      this.client.openUrl(url);
+      return;
+    }
     const command = new JetbrainsEditorCommand(
       [range],
       true,
@@ -294,6 +302,22 @@ export class JetbrainsEditor implements EditableTextEditor {
     );
   }
 
+  /** The http(s) URL on the range's first line that overlaps the range, if any */
+  private urlAt(range: Range): string | undefined {
+    const line = this.document.lineAt(range.start.line).text;
+    const end =
+      range.end.line === range.start.line ? range.end.character : line.length;
+    for (const match of line.matchAll(/https?:\/\/[^\s<>"'`]+/g)) {
+      // Punctuation that ends a sentence or closes brackets usually isn't part of the URL
+      const url = match[0].replace(/[.,;:!?)\]}]+$/, "");
+      const urlStart = match.index;
+      if (urlStart <= end && urlStart + url.length >= range.start.character) {
+        return url;
+      }
+    }
+    return undefined;
+  }
+
   async revealDefinition(range?: Range | undefined): Promise<void> {
     const command = new JetbrainsEditorCommand(
       range ? [range] : [],
@@ -311,7 +335,7 @@ export class JetbrainsEditor implements EditableTextEditor {
       range ? [range] : [],
       true,
       false,
-      "QuickImplementations",
+      "GotoTypeDeclaration",
     );
     this.applyIdeEdits(
       this.client.executeRangeCommand(this.id, JSON.stringify(command)),
@@ -362,28 +386,42 @@ export class JetbrainsEditor implements EditableTextEditor {
     throw new Error("editNewNotebookCellBelow not implemented.");
   }
 
-  async gitAccept(_range?: Range): Promise<void> {
-    throw new Error("gitAccept not implemented.");
+  // Git actions run on the target as the plugin's own IDE actions, which work with or without the IDE's staging
+  // area; revert falls back to IntelliJ's Rollback Lines outside git
+  async gitAccept(range?: Range): Promise<void> {
+    this.runGitAction(range, "Cursorless.AcceptConflictSide");
   }
 
-  async gitRevert(_range?: Range): Promise<void> {
-    throw new Error("gitRevert not implemented.");
+  async gitRevert(range?: Range): Promise<void> {
+    this.runGitAction(range, "Cursorless.GitRevertLines");
   }
 
   async gitStageFile(): Promise<void> {
-    throw new Error("gitStageFile not implemented.");
+    this.runGitAction(undefined, "Cursorless.GitStageFile");
   }
 
   async gitUnstageFile(): Promise<void> {
-    throw new Error("gitUnstageFile not implemented.");
+    this.runGitAction(undefined, "Cursorless.GitUnstageFile");
   }
 
-  async gitStageRange(_range?: Range): Promise<void> {
-    throw new Error("gitStageRange not implemented.");
+  async gitStageRange(range?: Range): Promise<void> {
+    this.runGitAction(range, "Cursorless.GitStageLines");
   }
 
-  async gitUnstageRange(_range?: Range): Promise<void> {
-    throw new Error("gitUnstageRange not implemented.");
+  async gitUnstageRange(range?: Range): Promise<void> {
+    this.runGitAction(range, "Cursorless.GitUnstageLines");
+  }
+
+  private runGitAction(range: Range | undefined, actionId: string) {
+    const command = new JetbrainsEditorCommand(
+      range ? [range] : [],
+      true,
+      true,
+      actionId,
+    );
+    this.applyIdeEdits(
+      this.client.executeRangeCommand(this.id, JSON.stringify(command)),
+    );
   }
 }
 

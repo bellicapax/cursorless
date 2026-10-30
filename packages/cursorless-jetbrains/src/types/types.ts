@@ -28,6 +28,9 @@ export interface EditorState {
   visible: boolean;
   editable: boolean;
   writable: boolean;
+  /** The file's indent settings in the IDE; absent from older plugins */
+  tabSize?: number;
+  insertSpaces?: boolean;
 }
 
 export interface EditorChange {

@@ -13,6 +13,10 @@ export interface JetbrainsClient {
   insertLineAfter(editorId: string, rangesJson: string): string | undefined;
   insertSnippet(editorId: string, snippet: string): void;
   revealLine(editorId: string, line: number, revealAt: string): void;
+  /** Scrolls the range into view, if it isn't already */
+  revealRange(editorId: string, rangeJson: string): void;
+  /** Opens the URL in the browser */
+  openUrl(url: string): void;
   readQuery(filename: string): string | undefined;
   flashRanges(flashRangesJson: string): string | undefined;
   setHighlightRanges(highlightId: string | undefined, editorId: string, rangesJson: string): void;
