@@ -1,4 +1,4 @@
-import type { Range } from "@cursorless/common";
+import type { Range } from "@cursorless/lib-common";
 import type { EditorEdit, EditorState, SelectionOffsets } from "./types";
 
 export type JetbrainsNamespace = "user";

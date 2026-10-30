@@ -6,35 +6,27 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "typecheck": "tsc",
     "build": "pnpm run esbuild:prod && pnpm run populate-dist",
-    "compile": "tsc --build",
-    "esbuild:base": "esbuild ./src/index.ts --format=esm --target=es2020 --conditions=cursorless:bundler --bundle --main-fields=main,module --outfile=./out/cursorless.js --platform=neutral --external:std --external:module --external:fs --external:path",
+    "esbuild:base": "esbuild ./src/index.ts --format=esm --target=es2020 --bundle --main-fields=main,module --outfile=./out/cursorless.js --platform=neutral --external:std --external:module --external:fs --external:path",
     "esbuild": "pnpm run esbuild:base --sourcemap",
     "esbuild:prod": "pnpm run esbuild:base --minify",
     "populate-dist": "bash ./scripts/populate-dist.sh",
-    "populate-dist:prod": "bash ./scripts/populate-dist.sh",
-    "watch:tsc": "pnpm compile --watch",
-    "watch:esbuild": "pnpm esbuild --watch",
-    "watch": "pnpm run --filter @cursorless/cursorless-jetbrains --parallel '/^watch:.*/'",
-    "clean": "rm -rf ./out tsconfig.tsbuildinfo ./dist ./build"
+    "clean": "rm -rf ./out ./dist ./tsconfig.tsbuildinfo"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
-  "types": "./out/index.d.ts",
   "exports": {
-    ".": {
-      "cursorless:bundler": "./src/index.ts",
-      "default": "./out/index.cjs"
-    }
+    ".": "./src/index.ts"
   },
   "dependencies": {
-    "@cursorless/common": "workspace:*",
-    "@cursorless/cursorless-engine": "workspace:*",
-    "@cursorless/test-case-recorder": "workspace:*",
+    "@cursorless/lib-common": "workspace:*",
+    "@cursorless/lib-engine": "workspace:*",
+    "@cursorless/lib-test-case-recorder": "workspace:*",
     "lodash-es": "^4.17.21",
     "vscode-uri": "^3.1.0",
-    "web-tree-sitter": "0.25.6"
+    "web-tree-sitter": "^0.27.1"
   },
   "devDependencies": {
     "@types/chai": "^5.2.2",

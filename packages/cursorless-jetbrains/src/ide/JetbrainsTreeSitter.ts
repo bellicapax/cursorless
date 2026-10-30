@@ -1,4 +1,4 @@
-import type { Range, TextDocument, TreeSitter } from "@cursorless/common";
+import type { Range, TextDocument, TreeSitter } from "@cursorless/lib-common";
 import type { Language, Node, Tree } from "web-tree-sitter";
 import { Query } from "web-tree-sitter";
 import { Parser, Language as ParserLanguage } from "web-tree-sitter";

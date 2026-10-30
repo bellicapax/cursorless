@@ -4,11 +4,11 @@ import type {
   ScopeProvider,
   ScopeType,
   TextEditor,
-} from "@cursorless/common";
+} from "@cursorless/lib-common";
 import {
   isGeneralizedRangeEqual,
   toCharacterRange,
-} from "@cursorless/common";
+} from "@cursorless/lib-common";
 import type { JetbrainsClient } from "./JetbrainsClient";
 
 export type VisualizationType = "content" | "removal" | "iteration";

@@ -2,7 +2,7 @@ import {
   Notifier,
   type Disposable,
   type RawTreeSitterQueryProvider,
-} from "@cursorless/common";
+} from "@cursorless/lib-common";
 import type { JetbrainsIDE } from "./JetbrainsIDE";
 
 export class JetbrainsTreeSitterQueryProvider

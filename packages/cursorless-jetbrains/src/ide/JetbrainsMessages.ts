@@ -1,4 +1,4 @@
-import type { MessageId, Messages, MessageType } from "@cursorless/common";
+import type { MessageId, Messages, MessageType } from "@cursorless/lib-common";
 
 export class JetbrainsMessages implements Messages {
   async showMessage(

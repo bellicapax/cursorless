@@ -1,4 +1,4 @@
-import type { Selection, TextDocument } from "@cursorless/common";
+import type { Selection, TextDocument } from "@cursorless/lib-common";
 import type { JetbrainsClient } from "./JetbrainsClient";
 
 export function setSelections(

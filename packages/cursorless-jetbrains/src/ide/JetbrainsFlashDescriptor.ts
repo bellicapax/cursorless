@@ -1,4 +1,4 @@
-import type { GeneralizedRange } from "@cursorless/common";
+import type { GeneralizedRange } from "@cursorless/lib-common";
 
 export interface JetbrainsFlashDescriptor {
   style: string;

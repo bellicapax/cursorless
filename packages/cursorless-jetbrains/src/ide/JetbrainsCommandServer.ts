@@ -3,7 +3,7 @@ import type {
   CommandServerApi,
   FocusedElementType,
   InboundSignal,
-} from "@cursorless/common";
+} from "@cursorless/lib-common";
 
 export class JetbrainsCommandServer implements CommandServerApi {
   private client!: JetbrainsClient;

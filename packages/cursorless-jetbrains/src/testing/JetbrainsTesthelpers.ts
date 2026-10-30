@@ -4,9 +4,9 @@ import type {
   IDE,
   NormalizedIDE,
   TestHelpers,
-} from "@cursorless/common";
+} from "@cursorless/lib-common";
 import type { JetbrainsIDE } from "../ide/JetbrainsIDE";
-import type { StoredTargetMap } from "@cursorless/cursorless-engine";
+import type { StoredTargetMap } from "@cursorless/lib-engine";
 
 export interface JetbrainsTestHelpers
   extends Omit<TestHelpers, "takeSnapshot"> {

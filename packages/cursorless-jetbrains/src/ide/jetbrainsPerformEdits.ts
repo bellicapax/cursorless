@@ -1,5 +1,5 @@
-import type { Edit } from "@cursorless/common";
-import { type InMemoryTextDocument } from "@cursorless/common";
+import type { Edit } from "@cursorless/lib-common";
+import { type InMemoryTextDocument } from "@cursorless/lib-common";
 import type { EditorEdit } from "../types/types";
 import type { JetbrainsIDE } from "./JetbrainsIDE";
 import type { JetbrainsClient } from "./JetbrainsClient";

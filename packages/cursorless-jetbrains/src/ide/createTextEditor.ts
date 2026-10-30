@@ -4,7 +4,7 @@ import {
   Range,
   Selection,
   type TextDocument,
-} from "@cursorless/common";
+} from "@cursorless/lib-common";
 import { URI } from "vscode-uri";
 import type { EditorState, JbPosition, JbSelection } from "../types/types";
 import { JetbrainsEditor } from "./JetbrainsEditor";

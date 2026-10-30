@@ -1,7 +1,7 @@
-import type { Selection } from "@cursorless/common";
 import {
   Position,
   Range,
+  Selection,
   selectionsEqual,
   type Edit,
   type EditableTextEditor,
@@ -12,7 +12,7 @@ import {
   type SetSelectionsOpts,
   type TextEditor,
   type TextEditorOptions,
-} from "@cursorless/common";
+} from "@cursorless/lib-common";
 import { setSelections } from "./setSelections";
 import type { JetbrainsIDE } from "./JetbrainsIDE";
 import { jetbrainsPerformEdits } from "./jetbrainsPerformEdits";
@@ -175,7 +175,7 @@ export class JetbrainsEditor implements EditableTextEditor {
   ): Promise<void> {
     console.log("insertSnippet" + snippet);
     if (ranges != null) {
-      await this.setSelections(ranges.map((range) => range.toSelection(false)));
+      await this.setSelections(ranges.map((range) => Selection.fromRange(range)));
     }
 
     await this.client.insertSnippet(this.id, snippet);
@@ -277,11 +277,19 @@ export class JetbrainsEditor implements EditableTextEditor {
     throw new Error("gitRevert not implemented.");
   }
 
-  async gitStage(_range?: Range): Promise<void> {
-    throw new Error("gitStage not implemented.");
+  async gitStageFile(): Promise<void> {
+    throw new Error("gitStageFile not implemented.");
   }
 
-  async gitUnstage(_range?: Range): Promise<void> {
-    throw new Error("gitUnstage not implemented.");
+  async gitUnstageFile(): Promise<void> {
+    throw new Error("gitUnstageFile not implemented.");
+  }
+
+  async gitStageRange(_range?: Range): Promise<void> {
+    throw new Error("gitStageRange not implemented.");
+  }
+
+  async gitUnstageRange(_range?: Range): Promise<void> {
+    throw new Error("gitUnstageRange not implemented.");
   }
 }

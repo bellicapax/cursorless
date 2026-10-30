@@ -5,8 +5,8 @@ import type {
   HatStyleInfo,
   HatStyleMap,
   Listener,
-} from "@cursorless/common";
-import { Notifier } from "@cursorless/common";
+} from "@cursorless/lib-common";
+import { Notifier } from "@cursorless/lib-common";
 import type { JetbrainsClient } from "./JetbrainsClient";
 import type { JetbrainsHatRange } from "../types/jetbrains.types";
 

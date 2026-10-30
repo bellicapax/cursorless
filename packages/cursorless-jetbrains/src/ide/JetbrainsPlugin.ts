@@ -1,3 +1,8 @@
+import type { CheatsheetInfo } from "@cursorless/lib-common";
+import {
+  getCheatsheetInfo,
+  getDefaultCheatsheetInfo,
+} from "@cursorless/lib-common";
 import type { JetbrainsClient } from "./JetbrainsClient";
 import { JetbrainsHats } from "./JetbrainsHats";
 import type { JetbrainsIDE } from "./JetbrainsIDE";
@@ -14,6 +19,20 @@ export class JetbrainsPlugin {
     readonly hats: JetbrainsHats,
     readonly talonSpokenForms: JetbrainsTalonSpokenForms,
   ) {}
+
+  /**
+   * The cheat sheet for Talon's "cursorless cheat sheet", built from the user's spoken forms as the VS Code
+   * extension does; the IDE writes it into the cheatsheet page.
+   */
+  async getCheatsheetInfo(): Promise<CheatsheetInfo> {
+    try {
+      const { spokenForms } = await this.talonSpokenForms.getSpokenForms();
+      return getCheatsheetInfo(spokenForms);
+    } catch (error) {
+      console.error("Using default spoken forms for the cheat sheet: " + error);
+      return getDefaultCheatsheetInfo();
+    }
+  }
 }
 
 export function createPlugin(

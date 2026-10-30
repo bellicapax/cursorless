@@ -1,4 +1,4 @@
-import type { Clipboard, Range } from "@cursorless/common";
+import type { Clipboard, Range } from "@cursorless/lib-common";
 import type { JetbrainsClient } from "./JetbrainsClient";
 
 export class JetbrainsClipboard implements Clipboard {

@@ -2,10 +2,10 @@ import type {
   Configuration,
   ConfigurationScope,
   CursorlessConfiguration,
-} from "@cursorless/common";
-import { CONFIGURATION_DEFAULTS } from "@cursorless/common";
-import type { GetFieldType, Paths } from "@cursorless/common";
-import { Notifier } from "@cursorless/common";
+} from "@cursorless/lib-common";
+import { CONFIGURATION_DEFAULTS } from "@cursorless/lib-common";
+import type { GetFieldType, Paths } from "@cursorless/lib-common";
+import { Notifier } from "@cursorless/lib-common";
 import { get } from "lodash-es";
 
 export class JetbrainsConfiguration implements Configuration {

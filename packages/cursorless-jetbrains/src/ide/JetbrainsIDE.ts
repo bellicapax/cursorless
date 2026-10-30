@@ -1,4 +1,4 @@
-import { InMemoryTextDocument, Notifier, Range } from "@cursorless/common";
+import { InMemoryTextDocument, Notifier, Range } from "@cursorless/lib-common";
 import type {
   Event,
   FlashDescriptor,
@@ -17,7 +17,7 @@ import type {
   TextEditor,
   WorkspaceFolder,
   NotebookEditor,
-} from "@cursorless/common";
+} from "@cursorless/lib-common";
 import { pull } from "lodash-es";
 import { JetbrainsCapabilities } from "./JetbrainsCapabilities";
 import { fromJetbrainsContentChange } from "./JetbrainsEvents";
