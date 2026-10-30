@@ -12,6 +12,7 @@ export const clojureScopeSupport: LanguageScopeSupportFacetMap = {
   "comment.line": supported,
   "name.function": supported,
   anonymousFunction: supported,
+  regularExpression: supported,
 
   namedFunction: supported,
   "namedFunction.iteration.document": supported,
@@ -33,6 +34,7 @@ export const clojureScopeSupport: LanguageScopeSupportFacetMap = {
   "textFragment.comment.line": supported,
   "textFragment.string.singleLine": supported,
   "textFragment.string.multiLine": supported,
+  "textFragment.regularExpression": supported,
 
   /* NOT APPLICABLE */
 
@@ -202,14 +204,14 @@ export const clojureScopeSupport: LanguageScopeSupportFacetMap = {
 
   // Enum
   "statement.enum": notApplicable,
-  "functionCallee.enum": notApplicable,
-  "functionCall.enum": notApplicable,
-  "argument.actual.enum.singleLine": notApplicable,
-  "argument.actual.enum.multiLine": notApplicable,
-  "argumentList.actual.enum.empty": notApplicable,
-  "argumentList.actual.enum.singleLine": notApplicable,
-  "argumentList.actual.enum.multiLine": notApplicable,
-  "argument.actual.enum.iteration": notApplicable,
+  "functionCallee.enumConstant": notApplicable,
+  "functionCall.enumConstant": notApplicable,
+  "argument.actual.enumConstant.singleLine": notApplicable,
+  "argument.actual.enumConstant.multiLine": notApplicable,
+  "argumentList.actual.enumConstant.empty": notApplicable,
+  "argumentList.actual.enumConstant.singleLine": notApplicable,
+  "argumentList.actual.enumConstant.multiLine": notApplicable,
+  "argument.actual.enumConstant.iteration": notApplicable,
   "name.enum": notApplicable,
   "name.field.enum": notApplicable,
   "name.iteration.enum": notApplicable,
@@ -371,7 +373,6 @@ export const clojureScopeSupport: LanguageScopeSupportFacetMap = {
   "name.iteration.block": notApplicable,
   "name.iteration.document": notApplicable,
   pairDelimiter: notApplicable,
-  regularExpression: notApplicable,
   "type.argument.formal": notApplicable,
   "type.argument.formal.iteration": notApplicable,
   "type.argument.formal.lambda": notApplicable,

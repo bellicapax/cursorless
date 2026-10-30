@@ -31,13 +31,13 @@ Below are visualizations of all our scope tests for this language. These were cr
 
 #### 2. Argument list: Actual multi line
 
-<i>A multi line list of arguments in a function call. Insertion delimiter should include new line.</i>
+<i>A multi-line list of arguments in a function call. Insertion delimiter should include a newline.</i>
 
 <ScopeVisualizer fixtureName="scopes/clojure/argumentList.actual.multiLine" languageId="clojure" />
 
 #### 3. Argument list: Actual single line
 
-<i>A single line list of arguments in a function call</i>
+<i>A single-line list of arguments in a function call</i>
 
 <ScopeVisualizer fixtureName="scopes/clojure/argumentList.actual.singleLine" languageId="clojure" />
 
@@ -45,13 +45,13 @@ Below are visualizations of all our scope tests for this language. These were cr
 
 #### 1. Argument: Actual multi line
 
-<i>A multiline argument in a function call. Insertion delimiter should include new line.</i>
+<i>A multi-line argument in a function call. Insertion delimiter should include a newline.</i>
 
 <ScopeVisualizer fixtureName="scopes/clojure/argument.actual.multiLine" languageId="clojure" />
 
 #### 2. Argument: Actual single line
 
-<i>A single line argument in a function call</i>
+<i>A single-line argument in a function call</i>
 
 <ScopeVisualizer fixtureName="scopes/clojure/argument.actual.singleLine" languageId="clojure" />
 
@@ -127,7 +127,7 @@ Below are visualizations of all our scope tests for this language. These were cr
 
 #### 1. Name: Function
 
-<i>Name of a function</i>
+<i>Name of a function declaration</i>
 
 <ScopeVisualizer fixtureName="scopes/clojure/name.function" languageId="clojure" />
 
@@ -144,6 +144,14 @@ Below are visualizations of all our scope tests for this language. These were cr
 <i>Iteration scope for named functions: the entire document including leading and trailing empty lines.</i>
 
 <ScopeVisualizer fixtureName="scopes/clojure/namedFunction.iteration.document" languageId="clojure" />
+
+### Regular expression
+
+#### 1. Regular expression
+
+<i>A regular expression</i>
+
+<ScopeVisualizer fixtureName="scopes/clojure/regularExpression" languageId="clojure" />
 
 ## Internal scopes
 
@@ -179,13 +187,19 @@ The following are internal scopes. They are not intended for user interaction or
 
 <ScopeVisualizer fixtureName="scopes/clojure/textFragment.comment.line" languageId="clojure" />
 
-#### 2. Text fragment: String multi line
+#### 2. Text fragment: Regular expression
+
+<i>Internally used text fragment consisting of a regular expression literal pattern</i>
+
+<ScopeVisualizer fixtureName="scopes/clojure/textFragment.regularExpression" languageId="clojure" />
+
+#### 3. Text fragment: String multi line
 
 <i>Internally used text fragment consisting of a multi-line string</i>
 
 <ScopeVisualizer fixtureName="scopes/clojure/textFragment.string.multiLine" languageId="clojure" />
 
-#### 3. Text fragment: String single line
+#### 4. Text fragment: String single line
 
 <i>Internally used text fragment consisting of a single-line string</i>
 

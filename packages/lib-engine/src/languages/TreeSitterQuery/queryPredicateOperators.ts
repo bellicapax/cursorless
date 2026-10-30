@@ -93,6 +93,23 @@ class NotParentType extends QueryPredicateOperator<NotParentType> {
 }
 
 /**
+ * A predicate operator that returns true if none of the node's direct children
+ * have any of the given types. For example, `(#not-child-type? @foo else_clause
+ * elif_clause)` rejects an if statement with an else or elif clause. Named and
+ * anonymous children are checked; descendants below the direct children are not
+ * checked.
+ */
+class NotChildType extends QueryPredicateOperator<NotChildType> {
+  name = "not-child-type?" as const;
+  schema = z.tuple([q.node, q.string]).rest(q.string);
+  run(capture: MutableQueryCapture, ...types: string[]) {
+    return !getNode(capture).children.some((child) =>
+      types.includes(child.type),
+    );
+  }
+}
+
+/**
  * A predicate operator that returns true if the node is the nth child of its
  * parent.  For example, `(#is-nth-child? @foo 0)` will reject the match if the
  * `@foo` capture is not the first child of its parent.
@@ -211,7 +228,7 @@ class ShrinkToMatch extends QueryPredicateOperator<ShrinkToMatch> {
     const match = text.match(new RegExp(pattern, "dsu"));
 
     if (match?.index == null) {
-      throw new Error(`No match for pattern '${pattern}'`);
+      throw new Error(`No match for pattern '${pattern}' on text '${text}'`);
     }
 
     const offsets = match.indices?.groups?.keep ?? match.indices?.[0];
@@ -301,22 +318,39 @@ class TrimEnd extends QueryPredicateOperator<TrimEnd> {
 
   run(...captures: MutableQueryCapture[]) {
     for (const capture of captures) {
-      const { document, range } = capture;
-      const text = getNode(capture).text;
-      const whitespaceLength = text.length - text.trimEnd().length;
-
-      if (whitespaceLength > 0) {
-        setRange(
-          capture,
-          new Range(
-            range.start,
-            adjustPosition(document, range.end, -whitespaceLength),
-          ),
-        );
-      }
+      trimEnd(capture);
     }
-
     return true;
+  }
+}
+
+/**
+ * A predicate that behaves the same as {@link TrimEnd} but allows the node to be missing.
+ */
+class TrimEndOptional extends QueryPredicateOperator<TrimEndOptional> {
+  name = "trim-end-optional!" as const;
+  schema = z.tuple([q.node]);
+  allowMissingNode = true;
+
+  run(capture: MutableQueryCapture) {
+    trimEnd(capture);
+    return true;
+  }
+}
+
+function trimEnd(capture: MutableQueryCapture): void {
+  const { document, range } = capture;
+  const text = getNode(capture).text;
+  const whitespaceLength = text.length - text.trimEnd().length;
+
+  if (whitespaceLength > 0) {
+    setRange(
+      capture,
+      new Range(
+        range.start,
+        adjustPosition(document, range.end, -whitespaceLength),
+      ),
+    );
   }
 }
 
@@ -350,10 +384,7 @@ class DocumentRange extends QueryPredicateOperator<DocumentRange> {
 class AllowMultiple extends QueryPredicateOperator<AllowMultiple> {
   name = "allow-multiple!" as const;
   schema = z.tuple([q.node]).rest(q.node);
-
-  protected allowMissingNode(): boolean {
-    return true;
-  }
+  allowMissingNode = true;
 
   run(...captures: MutableQueryCapture[]) {
     for (const capture of captures) {
@@ -460,8 +491,10 @@ export const queryPredicateOperators = [
   new Type(),
   new NotType(),
   new TrimEnd(),
+  new TrimEndOptional(),
   new DocumentRange(),
   new NotParentType(),
+  new NotChildType(),
   new IsNthChild(),
   new ChildRange(),
   new CharacterRange(),

@@ -294,14 +294,14 @@ export const pythonScopeSupport: LanguageScopeSupportFacetMap = {
   "type.enum": notApplicable,
   "interior.enum": notApplicable,
   "statement.enum": notApplicable,
-  "functionCall.enum": notApplicable,
-  "functionCallee.enum": notApplicable,
-  "argument.actual.enum.singleLine": notApplicable,
-  "argument.actual.enum.multiLine": notApplicable,
-  "argumentList.actual.enum.empty": notApplicable,
-  "argumentList.actual.enum.singleLine": notApplicable,
-  "argumentList.actual.enum.multiLine": notApplicable,
-  "argument.actual.enum.iteration": notApplicable,
+  "functionCall.enumConstant": notApplicable,
+  "functionCallee.enumConstant": notApplicable,
+  "argument.actual.enumConstant.singleLine": notApplicable,
+  "argument.actual.enumConstant.multiLine": notApplicable,
+  "argumentList.actual.enumConstant.empty": notApplicable,
+  "argumentList.actual.enumConstant.singleLine": notApplicable,
+  "argumentList.actual.enumConstant.multiLine": notApplicable,
+  "argument.actual.enumConstant.iteration": notApplicable,
 
   // Generic/enum calls
   "functionCall.generic": notApplicable,
@@ -356,13 +356,16 @@ export const pythonScopeSupport: LanguageScopeSupportFacetMap = {
   subParagraph: notApplicable,
   part: notApplicable,
 
+  // Regular expression literal
+  regularExpression: notApplicable,
+  "textFragment.regularExpression": notApplicable,
+
   // Miscellaneous
   "statement.misc": notApplicable,
   "statement.package": notApplicable,
   "statement.update": notApplicable,
   "value.resource": notApplicable,
   environment: notApplicable,
-  regularExpression: notApplicable,
   selector: notApplicable,
   unit: notApplicable,
 };

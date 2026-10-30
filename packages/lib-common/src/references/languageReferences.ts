@@ -32,6 +32,8 @@ export type LanguageId =
   | "scala"
   | "scm"
   | "scss"
+  | "shellscript"
+  | "swift"
   | "talon"
   | "talon-list"
   | "typescript"
@@ -126,6 +128,12 @@ export const languageReferences: Record<LanguageId, LanguageReference> = {
   },
   scss: {
     name: "SCSS",
+  },
+  shellscript: {
+    name: "Shell Script",
+  },
+  swift: {
+    name: "Swift",
   },
   talon: {
     name: "Talon",

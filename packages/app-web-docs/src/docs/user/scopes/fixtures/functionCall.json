@@ -282,9 +282,9 @@
     ]
   },
   {
-    "name": "scopes/dart/functionCall/functionCall.enum",
+    "name": "scopes/dart/functionCall/functionCall.enumConstant",
     "languageId": "dart",
-    "facet": "functionCall.enum",
+    "facet": "functionCall.enumConstant",
     "code": "enum Foo {\n    bar();\n}",
     "scopes": [
       {
@@ -470,9 +470,9 @@
     ]
   },
   {
-    "name": "scopes/java/functionCall/functionCall.enum",
+    "name": "scopes/java/functionCall/functionCall.enumConstant",
     "languageId": "java",
-    "facet": "functionCall.enum",
+    "facet": "functionCall.enumConstant",
     "code": "enum Foo {\n    bar();\n}",
     "scopes": [
       {
@@ -692,9 +692,9 @@
     ]
   },
   {
-    "name": "scopes/kotlin/functionCall/functionCall.enum",
+    "name": "scopes/kotlin/functionCall/functionCall.enumConstant",
     "languageId": "kotlin",
-    "facet": "functionCall.enum",
+    "facet": "functionCall.enumConstant",
     "code": "enum class Foo {\n    bar()\n}",
     "scopes": [
       {
@@ -1171,9 +1171,9 @@
     ]
   },
   {
-    "name": "scopes/rust/functionCall.enum",
+    "name": "scopes/rust/functionCall.enumConstant",
     "languageId": "rust",
-    "facet": "functionCall.enum",
+    "facet": "functionCall.enumConstant",
     "code": "enum Foo {\n    Bar()\n}",
     "scopes": [
       {
@@ -1346,6 +1346,117 @@
           }
         ],
         "domain": "0:0-0:7"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/functionCall",
+    "languageId": "shellscript",
+    "facet": "functionCall",
+    "code": "foo",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:3",
+            "removal": "0:0-0:3"
+          }
+        ],
+        "domain": "0:0-0:3"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/functionCall2",
+    "languageId": "shellscript",
+    "facet": "functionCall",
+    "code": "foo aaa bbb",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:11",
+            "removal": "0:0-0:11"
+          }
+        ],
+        "domain": "0:0-0:11"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/functionCall/functionCall.chain",
+    "languageId": "swift",
+    "facet": "functionCall.chain",
+    "code": "foo().bar()",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:5",
+            "removal": "0:0-0:5"
+          }
+        ],
+        "domain": "0:0-0:5"
+      },
+      {
+        "targets": [
+          {
+            "content": "0:0-0:11",
+            "removal": "0:0-0:11"
+          }
+        ],
+        "domain": "0:0-0:11"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/functionCall/functionCall.constructor",
+    "languageId": "swift",
+    "facet": "functionCall.constructor",
+    "code": "Foo()",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:5",
+            "removal": "0:0-0:5"
+          }
+        ],
+        "domain": "0:0-0:5"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/functionCall/functionCall.method",
+    "languageId": "swift",
+    "facet": "functionCall.method",
+    "code": "foo.bar()",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:9",
+            "removal": "0:0-0:9"
+          }
+        ],
+        "domain": "0:0-0:9"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/functionCall/functionCall",
+    "languageId": "swift",
+    "facet": "functionCall",
+    "code": "foo()",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:5",
+            "removal": "0:0-0:5"
+          }
+        ],
+        "domain": "0:0-0:5"
       }
     ]
   },

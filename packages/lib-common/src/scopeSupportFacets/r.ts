@@ -249,14 +249,14 @@ export const rScopeSupport: LanguageScopeSupportFacetMap = {
 
   // Enum
   "statement.enum": notApplicable,
-  "functionCallee.enum": notApplicable,
-  "functionCall.enum": notApplicable,
-  "argument.actual.enum.singleLine": notApplicable,
-  "argument.actual.enum.multiLine": notApplicable,
-  "argumentList.actual.enum.empty": notApplicable,
-  "argumentList.actual.enum.singleLine": notApplicable,
-  "argumentList.actual.enum.multiLine": notApplicable,
-  "argument.actual.enum.iteration": notApplicable,
+  "functionCallee.enumConstant": notApplicable,
+  "functionCall.enumConstant": notApplicable,
+  "argument.actual.enumConstant.singleLine": notApplicable,
+  "argument.actual.enumConstant.multiLine": notApplicable,
+  "argumentList.actual.enumConstant.empty": notApplicable,
+  "argumentList.actual.enumConstant.singleLine": notApplicable,
+  "argumentList.actual.enumConstant.multiLine": notApplicable,
+  "argument.actual.enumConstant.iteration": notApplicable,
   "name.enum": notApplicable,
   "name.field.enum": notApplicable,
   "name.iteration.enum": notApplicable,
@@ -363,6 +363,10 @@ export const rScopeSupport: LanguageScopeSupportFacetMap = {
   "collectionItem.unenclosed.multiLine": notApplicable,
   "collectionItem.unenclosed.iteration": notApplicable,
 
+  // Regular expression literal
+  regularExpression: notApplicable,
+  "textFragment.regularExpression": notApplicable,
+
   // Miscellaneous statements
   "statement.misc": notApplicable,
   "statement.package": notApplicable,
@@ -388,7 +392,6 @@ export const rScopeSupport: LanguageScopeSupportFacetMap = {
   "interior.switch": notApplicable,
   environment: notApplicable,
   pairDelimiter: notApplicable,
-  regularExpression: notApplicable,
   selector: notApplicable,
   unit: notApplicable,
 };

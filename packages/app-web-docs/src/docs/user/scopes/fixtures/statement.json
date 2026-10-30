@@ -3,7 +3,7 @@
     "name": "scopes/c/statement/statement.assignment.compound",
     "languageId": "c",
     "facet": "statement.assignment.compound",
-    "code": "foo += 0;",
+    "code": "foo += 1;",
     "scopes": [
       {
         "targets": [
@@ -622,16 +622,16 @@
     "name": "scopes/c/statement/statement.switch",
     "languageId": "c",
     "facet": "statement.switch",
-    "code": "switch (foo) {}",
+    "code": "switch (value) {}",
     "scopes": [
       {
         "targets": [
           {
-            "content": "0:0-0:15",
-            "removal": "0:0-0:15"
+            "content": "0:0-0:17",
+            "removal": "0:0-0:17"
           }
         ],
-        "domain": "0:0-0:15"
+        "domain": "0:0-0:17"
       }
     ]
   },
@@ -945,7 +945,7 @@
     "name": "scopes/csharp/statement/statement.assignment.compound",
     "languageId": "csharp",
     "facet": "statement.assignment.compound",
-    "code": "foo += 0;",
+    "code": "foo += 1;",
     "scopes": [
       {
         "targets": [
@@ -1601,16 +1601,16 @@
     "name": "scopes/csharp/statement/statement.switch",
     "languageId": "csharp",
     "facet": "statement.switch",
-    "code": "switch (foo) {}",
+    "code": "switch (value) {}",
     "scopes": [
       {
         "targets": [
           {
-            "content": "0:0-0:15",
-            "removal": "0:0-0:15"
+            "content": "0:0-0:17",
+            "removal": "0:0-0:17"
           }
         ],
-        "domain": "0:0-0:15"
+        "domain": "0:0-0:17"
       }
     ]
   },
@@ -1830,7 +1830,7 @@
     "name": "scopes/dart/statement/statement.assignment.compound",
     "languageId": "dart",
     "facet": "statement.assignment.compound",
-    "code": "void main() {\n    foo += 0;\n}",
+    "code": "void main() {\n    foo += 1;\n}",
     "scopes": [
       {
         "targets": [
@@ -2456,7 +2456,7 @@
     "name": "scopes/dart/statement/statement.switch",
     "languageId": "dart",
     "facet": "statement.switch",
-    "code": "void main() {\n    switch (foo) {}\n}",
+    "code": "void main() {\n    switch (value) {}\n}",
     "scopes": [
       {
         "targets": [
@@ -2470,11 +2470,11 @@
       {
         "targets": [
           {
-            "content": "1:4-1:19",
+            "content": "1:4-1:21",
             "removal": "1:0-2:0"
           }
         ],
-        "domain": "1:4-1:19"
+        "domain": "1:4-1:21"
       }
     ]
   },
@@ -2681,7 +2681,7 @@
     "name": "scopes/go/statement/statement.assignment.compound",
     "languageId": "go",
     "facet": "statement.assignment.compound",
-    "code": "foo += 0",
+    "code": "foo += 1",
     "scopes": [
       {
         "targets": [
@@ -3168,16 +3168,16 @@
     "name": "scopes/go/statement/statement.switch",
     "languageId": "go",
     "facet": "statement.switch",
-    "code": "switch foo {}",
+    "code": "switch value {}",
     "scopes": [
       {
         "targets": [
           {
-            "content": "0:0-0:13",
-            "removal": "0:0-0:13"
+            "content": "0:0-0:15",
+            "removal": "0:0-0:15"
           }
         ],
-        "domain": "0:0-0:13"
+        "domain": "0:0-0:15"
       }
     ]
   },
@@ -3287,7 +3287,7 @@
     "name": "scopes/java/statement/statement.assignment.compound",
     "languageId": "java",
     "facet": "statement.assignment.compound",
-    "code": "foo += 0;",
+    "code": "foo += 1;",
     "scopes": [
       {
         "targets": [
@@ -3447,6 +3447,32 @@
     ]
   },
   {
+    "name": "scopes/java/statement/statement.constructor3",
+    "languageId": "java",
+    "facet": "statement.constructor",
+    "code": "record Foo() {\n    Foo {}\n}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-2:1",
+            "removal": "0:0-2:1"
+          }
+        ],
+        "domain": "0:0-2:1"
+      },
+      {
+        "targets": [
+          {
+            "content": "1:4-1:10",
+            "removal": "1:0-2:0"
+          }
+        ],
+        "domain": "1:4-1:10"
+      }
+    ]
+  },
+  {
     "name": "scopes/java/statement/statement.continue",
     "languageId": "java",
     "facet": "statement.continue",
@@ -3538,6 +3564,32 @@
           }
         ],
         "domain": "2:4-2:24"
+      }
+    ]
+  },
+  {
+    "name": "scopes/java/statement/statement.field.class2",
+    "languageId": "java",
+    "facet": "statement.field.class",
+    "code": "record Foo() {\n    static int bar = 0;\n}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-2:1",
+            "removal": "0:0-2:1"
+          }
+        ],
+        "domain": "0:0-2:1"
+      },
+      {
+        "targets": [
+          {
+            "content": "1:4-1:23",
+            "removal": "1:0-2:0"
+          }
+        ],
+        "domain": "1:4-1:23"
       }
     ]
   },
@@ -3855,6 +3907,30 @@
     ]
   },
   {
+    "name": "scopes/java/statement/statement.iteration.class3",
+    "languageId": "java",
+    "facet": "statement.iteration.class",
+    "code": "record Foo(int aaa) { }",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:23"
+          }
+        ],
+        "domain": "0:0-0:23"
+      },
+      {
+        "targets": [
+          {
+            "content": "0:21-0:22"
+          }
+        ],
+        "domain": "0:21-0:22"
+      }
+    ]
+  },
+  {
     "name": "scopes/java/statement/statement.iteration.document",
     "languageId": "java",
     "facet": "statement.iteration.document",
@@ -3969,6 +4045,32 @@
           }
         ],
         "domain": "1:4-2:24"
+      }
+    ]
+  },
+  {
+    "name": "scopes/java/statement/statement.method3",
+    "languageId": "java",
+    "facet": "statement.method",
+    "code": "record Foo() {\n    void bar() {}\n}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-2:1",
+            "removal": "0:0-2:1"
+          }
+        ],
+        "domain": "0:0-2:1"
+      },
+      {
+        "targets": [
+          {
+            "content": "1:4-1:17",
+            "removal": "1:0-2:0"
+          }
+        ],
+        "domain": "1:4-1:17"
       }
     ]
   },
@@ -4088,16 +4190,16 @@
     "name": "scopes/java/statement/statement.switch",
     "languageId": "java",
     "facet": "statement.switch",
-    "code": "switch (foo) {}",
+    "code": "switch (value) {}",
     "scopes": [
       {
         "targets": [
           {
-            "content": "0:0-0:15",
-            "removal": "0:0-0:15"
+            "content": "0:0-0:17",
+            "removal": "0:0-0:17"
           }
         ],
-        "domain": "0:0-0:15"
+        "domain": "0:0-0:17"
       }
     ]
   },
@@ -4224,7 +4326,7 @@
     "name": "scopes/java/statement/statement.yield",
     "languageId": "java",
     "facet": "statement.yield",
-    "code": "switch (foo) {\n    case 0:\n        yield 0;\n}",
+    "code": "switch (value) {\n    case 0:\n        yield 0;\n}",
     "scopes": [
       {
         "targets": [
@@ -4250,7 +4352,7 @@
     "name": "scopes/javascript.core/statement/statement.assignment.compound",
     "languageId": "javascript.core",
     "facet": "statement.assignment.compound",
-    "code": "foo += 0;",
+    "code": "foo += 1;",
     "scopes": [
       {
         "targets": [
@@ -5257,16 +5359,16 @@
     "name": "scopes/javascript.core/statement/statement.switch",
     "languageId": "javascript.core",
     "facet": "statement.switch",
-    "code": "switch (foo) {}",
+    "code": "switch (value) {}",
     "scopes": [
       {
         "targets": [
           {
-            "content": "0:0-0:15",
-            "removal": "0:0-0:15"
+            "content": "0:0-0:17",
+            "removal": "0:0-0:17"
           }
         ],
-        "domain": "0:0-0:15"
+        "domain": "0:0-0:17"
       }
     ]
   },
@@ -5427,7 +5529,7 @@
     "name": "scopes/kotlin/statement/statement.assignment.compound",
     "languageId": "kotlin",
     "facet": "statement.assignment.compound",
-    "code": "foo += 0",
+    "code": "foo += 1",
     "scopes": [
       {
         "targets": [
@@ -6779,7 +6881,7 @@
     "name": "scopes/php/statement/statement.assignment.compound",
     "languageId": "php",
     "facet": "statement.assignment.compound",
-    "code": "<?php\n$foo += 0;",
+    "code": "<?php\n$foo += 1;",
     "scopes": [
       {
         "targets": [
@@ -7427,16 +7529,16 @@
     "name": "scopes/php/statement/statement.switch",
     "languageId": "php",
     "facet": "statement.switch",
-    "code": "<?php\nswitch ($foo) {}",
+    "code": "<?php\nswitch ($value) {}",
     "scopes": [
       {
         "targets": [
           {
-            "content": "1:0-1:16",
-            "removal": "0:5-1:16"
+            "content": "1:0-1:18",
+            "removal": "0:5-1:18"
           }
         ],
-        "domain": "1:0-1:16"
+        "domain": "1:0-1:18"
       }
     ]
   },
@@ -7579,7 +7681,7 @@
     "name": "scopes/python/statement/statement.assignment.compound",
     "languageId": "python",
     "facet": "statement.assignment.compound",
-    "code": "foo += 0",
+    "code": "foo += 1",
     "scopes": [
       {
         "targets": [
@@ -8108,7 +8210,7 @@
     "name": "scopes/python/statement/statement.switch",
     "languageId": "python",
     "facet": "statement.switch",
-    "code": "match foo:\n    pass",
+    "code": "match value:\n    pass",
     "scopes": [
       {
         "targets": [
@@ -8528,16 +8630,16 @@
     "name": "scopes/r/statement/statement.switch",
     "languageId": "r",
     "facet": "statement.switch",
-    "code": "switch(foo)",
+    "code": "switch(value)",
     "scopes": [
       {
         "targets": [
           {
-            "content": "0:0-0:11",
-            "removal": "0:0-0:11"
+            "content": "0:0-0:13",
+            "removal": "0:0-0:13"
           }
         ],
-        "domain": "0:0-0:11"
+        "domain": "0:0-0:13"
       }
     ]
   },
@@ -9194,7 +9296,7 @@
     "name": "scopes/rust/statement/statement.assignment.compound",
     "languageId": "rust",
     "facet": "statement.assignment.compound",
-    "code": "foo += 0;",
+    "code": "foo += 1;",
     "scopes": [
       {
         "targets": [
@@ -9721,16 +9823,16 @@
     "name": "scopes/rust/statement/statement.switch",
     "languageId": "rust",
     "facet": "statement.switch",
-    "code": "match foo {}",
+    "code": "match value {}",
     "scopes": [
       {
         "targets": [
           {
-            "content": "0:0-0:12",
-            "removal": "0:0-0:12"
+            "content": "0:0-0:14",
+            "removal": "0:0-0:14"
           }
         ],
-        "domain": "0:0-0:12"
+        "domain": "0:0-0:14"
       }
     ]
   },
@@ -9857,7 +9959,7 @@
     "name": "scopes/scala/statement/statement.assignment.compound",
     "languageId": "scala",
     "facet": "statement.assignment.compound",
-    "code": "foo += 0",
+    "code": "foo += 1",
     "scopes": [
       {
         "targets": [
@@ -10589,6 +10691,1569 @@
           }
         ],
         "domain": "0:0-0:10"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/statement/statement.assignment.compound",
+    "languageId": "shellscript",
+    "facet": "statement.assignment.compound",
+    "code": "foo+=1",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:6",
+            "removal": "0:0-0:6"
+          }
+        ],
+        "domain": "0:0-0:6"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/statement/statement.assignment",
+    "languageId": "shellscript",
+    "facet": "statement.assignment",
+    "code": "foo=0",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:5",
+            "removal": "0:0-0:5"
+          }
+        ],
+        "domain": "0:0-0:5"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/statement/statement.break",
+    "languageId": "shellscript",
+    "facet": "statement.break",
+    "code": "while true; do\n    break\ndone",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-2:4",
+            "removal": "0:0-2:4"
+          }
+        ],
+        "domain": "0:0-2:4"
+      },
+      {
+        "targets": [
+          {
+            "content": "1:4-1:9",
+            "removal": "1:0-2:0"
+          }
+        ],
+        "domain": "1:4-1:9"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/statement/statement.constant",
+    "languageId": "shellscript",
+    "facet": "statement.constant",
+    "code": "readonly foo=0",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:14",
+            "removal": "0:0-0:14"
+          }
+        ],
+        "domain": "0:0-0:14"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/statement/statement.continue",
+    "languageId": "shellscript",
+    "facet": "statement.continue",
+    "code": "while true; do\n    continue\ndone",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-2:4",
+            "removal": "0:0-2:4"
+          }
+        ],
+        "domain": "0:0-2:4"
+      },
+      {
+        "targets": [
+          {
+            "content": "1:4-1:12",
+            "removal": "1:0-2:0"
+          }
+        ],
+        "domain": "1:4-1:12"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/statement/statement.for",
+    "languageId": "shellscript",
+    "facet": "statement.for",
+    "code": "for ((i = 0; i < 2; i++)); do :; done",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:37",
+            "removal": "0:0-0:37"
+          }
+        ],
+        "domain": "0:0-0:37"
+      },
+      {
+        "targets": [
+          {
+            "content": "0:30-0:31",
+            "removal": "0:29-0:31"
+          }
+        ],
+        "domain": "0:30-0:31"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/statement/statement.foreach",
+    "languageId": "shellscript",
+    "facet": "statement.foreach",
+    "code": "for v in values; do :; done",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:27",
+            "removal": "0:0-0:27"
+          }
+        ],
+        "domain": "0:0-0:27"
+      },
+      {
+        "targets": [
+          {
+            "content": "0:20-0:21",
+            "removal": "0:19-0:21"
+          }
+        ],
+        "domain": "0:20-0:21"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/statement/statement.function",
+    "languageId": "shellscript",
+    "facet": "statement.function",
+    "code": "foo() {}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:8",
+            "removal": "0:0-0:8"
+          }
+        ],
+        "domain": "0:0-0:8"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/statement/statement.function2",
+    "languageId": "shellscript",
+    "facet": "statement.function",
+    "code": "function foo {}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:15",
+            "removal": "0:0-0:15"
+          }
+        ],
+        "domain": "0:0-0:15"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/statement/statement.function3",
+    "languageId": "shellscript",
+    "facet": "statement.function",
+    "code": "function foo() {}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:17",
+            "removal": "0:0-0:17"
+          }
+        ],
+        "domain": "0:0-0:17"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/statement/statement.function4",
+    "languageId": "shellscript",
+    "facet": "statement.function",
+    "code": "foo() ()",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:8",
+            "removal": "0:0-0:8"
+          }
+        ],
+        "domain": "0:0-0:8"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/statement/statement.functionCall",
+    "languageId": "shellscript",
+    "facet": "statement.functionCall",
+    "code": "foo",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:3",
+            "removal": "0:0-0:3"
+          }
+        ],
+        "domain": "0:0-0:3"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/statement/statement.functionCall2",
+    "languageId": "shellscript",
+    "facet": "statement.functionCall",
+    "code": "foo aaa bbb",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:11",
+            "removal": "0:0-0:11"
+          }
+        ],
+        "domain": "0:0-0:11"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/statement/statement.functionCall3",
+    "languageId": "shellscript",
+    "facet": "statement.functionCall",
+    "code": "foo | bar | baz",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:15",
+            "removal": "0:0-0:15"
+          }
+        ],
+        "domain": "0:0-0:15"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/statement/statement.functionCall4",
+    "languageId": "shellscript",
+    "facet": "statement.functionCall",
+    "code": "foo |& bar",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:10",
+            "removal": "0:0-0:10"
+          }
+        ],
+        "domain": "0:0-0:10"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/statement/statement.functionCall5",
+    "languageId": "shellscript",
+    "facet": "statement.functionCall",
+    "code": "(foo; bar)",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:10",
+            "removal": "0:0-0:10"
+          }
+        ],
+        "domain": "0:0-0:10"
+      },
+      {
+        "targets": [
+          {
+            "content": "0:1-0:4",
+            "removal": "0:1-0:4"
+          }
+        ],
+        "domain": "0:1-0:4"
+      },
+      {
+        "targets": [
+          {
+            "content": "0:6-0:9",
+            "removal": "0:5-0:9"
+          }
+        ],
+        "domain": "0:6-0:9"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/statement/statement.if",
+    "languageId": "shellscript",
+    "facet": "statement.if",
+    "code": "if true; then\nelif false; then\nelse\nfi",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-3:2",
+            "removal": "0:0-3:2"
+          }
+        ],
+        "domain": "0:0-3:2"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/statement/statement.if2",
+    "languageId": "shellscript",
+    "facet": "statement.if",
+    "code": "if foo; then\n    aaa\n    bbb\nelif baz; then\n    ccc\n    ddd\nfi",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-6:2",
+            "removal": "0:0-6:2"
+          }
+        ],
+        "domain": "0:0-6:2"
+      },
+      {
+        "targets": [
+          {
+            "content": "1:4-1:7",
+            "removal": "1:0-2:0"
+          }
+        ],
+        "domain": "1:4-1:7"
+      },
+      {
+        "targets": [
+          {
+            "content": "2:4-2:7",
+            "removal": "2:0-3:0"
+          }
+        ],
+        "domain": "2:4-2:7"
+      },
+      {
+        "targets": [
+          {
+            "content": "4:4-4:7",
+            "removal": "4:0-5:0"
+          }
+        ],
+        "domain": "4:4-4:7"
+      },
+      {
+        "targets": [
+          {
+            "content": "5:4-5:7",
+            "removal": "5:0-6:0"
+          }
+        ],
+        "domain": "5:4-5:7"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/statement/statement.import",
+    "languageId": "shellscript",
+    "facet": "statement.import",
+    "code": "source foo.sh",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:13",
+            "removal": "0:0-0:13"
+          }
+        ],
+        "domain": "0:0-0:13"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/statement/statement.iteration.block",
+    "languageId": "shellscript",
+    "facet": "statement.iteration.block",
+    "code": "foo() { }",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:9"
+          }
+        ],
+        "domain": "0:0-0:9"
+      },
+      {
+        "targets": [
+          {
+            "content": "0:7-0:8"
+          }
+        ],
+        "domain": "0:7-0:8"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/statement/statement.iteration.block2",
+    "languageId": "shellscript",
+    "facet": "statement.iteration.block",
+    "code": "if true; then\n    :\nelif false; then\n    :\nelse\n    :\nfi",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-6:2"
+          }
+        ],
+        "domain": "0:0-6:2"
+      },
+      {
+        "targets": [
+          {
+            "content": "0:13-2:0"
+          }
+        ],
+        "domain": "0:13-2:0"
+      },
+      {
+        "targets": [
+          {
+            "content": "2:16-4:0"
+          }
+        ],
+        "domain": "2:16-4:0"
+      },
+      {
+        "targets": [
+          {
+            "content": "4:4-6:0"
+          }
+        ],
+        "domain": "4:4-6:0"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/statement/statement.iteration.block3",
+    "languageId": "shellscript",
+    "facet": "statement.iteration.block",
+    "code": "while true; do :; done",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:22"
+          }
+        ],
+        "domain": "0:0-0:22"
+      },
+      {
+        "targets": [
+          {
+            "content": "0:14-0:18"
+          }
+        ],
+        "domain": "0:14-0:18"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/statement/statement.iteration.block4",
+    "languageId": "shellscript",
+    "facet": "statement.iteration.block",
+    "code": "case $foo in\n    0) bar=0 ;;\nesac",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-2:4"
+          }
+        ],
+        "domain": "0:0-2:4"
+      },
+      {
+        "targets": [
+          {
+            "content": "1:6-1:13"
+          }
+        ],
+        "domain": "1:6-1:13"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/statement/statement.iteration.block5",
+    "languageId": "shellscript",
+    "facet": "statement.iteration.block",
+    "code": "case $foo in\n  0) : ;&\n  1) : ;;&\n  *) : ;;\nesac",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-4:4"
+          }
+        ],
+        "domain": "0:0-4:4"
+      },
+      {
+        "targets": [
+          {
+            "content": "1:4-1:7"
+          }
+        ],
+        "domain": "1:4-1:7"
+      },
+      {
+        "targets": [
+          {
+            "content": "2:4-2:7"
+          }
+        ],
+        "domain": "2:4-2:7"
+      },
+      {
+        "targets": [
+          {
+            "content": "3:4-3:7"
+          }
+        ],
+        "domain": "3:4-3:7"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/statement/statement.iteration.document",
+    "languageId": "shellscript",
+    "facet": "statement.iteration.document",
+    "code": "\ndeclare foo\n",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-2:0"
+          }
+        ],
+        "domain": "0:0-2:0"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/statement/statement.return",
+    "languageId": "shellscript",
+    "facet": "statement.return",
+    "code": "foo() {\n    return 0\n}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-2:1",
+            "removal": "0:0-2:1"
+          }
+        ],
+        "domain": "0:0-2:1"
+      },
+      {
+        "targets": [
+          {
+            "content": "1:4-1:12",
+            "removal": "1:0-2:0"
+          }
+        ],
+        "domain": "1:4-1:12"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/statement/statement.return2",
+    "languageId": "shellscript",
+    "facet": "statement.return",
+    "code": "function foo {\n    return 0\n}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-2:1",
+            "removal": "0:0-2:1"
+          }
+        ],
+        "domain": "0:0-2:1"
+      },
+      {
+        "targets": [
+          {
+            "content": "1:4-1:12",
+            "removal": "1:0-2:0"
+          }
+        ],
+        "domain": "1:4-1:12"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/statement/statement.switch",
+    "languageId": "shellscript",
+    "facet": "statement.switch",
+    "code": "case $foo in esac",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:17",
+            "removal": "0:0-0:17"
+          }
+        ],
+        "domain": "0:0-0:17"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/statement/statement.update",
+    "languageId": "shellscript",
+    "facet": "statement.update",
+    "code": "((foo++))",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:9",
+            "removal": "0:0-0:9"
+          }
+        ],
+        "domain": "0:0-0:9"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/statement/statement.variable.initialized",
+    "languageId": "shellscript",
+    "facet": "statement.variable.initialized",
+    "code": "local foo=0",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:11",
+            "removal": "0:0-0:11"
+          }
+        ],
+        "domain": "0:0-0:11"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/statement/statement.variable.initialized2",
+    "languageId": "shellscript",
+    "facet": "statement.variable.initialized",
+    "code": "declare foo=0",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:13",
+            "removal": "0:0-0:13"
+          }
+        ],
+        "domain": "0:0-0:13"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/statement/statement.variable.uninitialized",
+    "languageId": "shellscript",
+    "facet": "statement.variable.uninitialized",
+    "code": "declare foo",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:11",
+            "removal": "0:0-0:11"
+          }
+        ],
+        "domain": "0:0-0:11"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/statement/statement.while",
+    "languageId": "shellscript",
+    "facet": "statement.while",
+    "code": "while true; do :; done",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:22",
+            "removal": "0:0-0:22"
+          }
+        ],
+        "domain": "0:0-0:22"
+      },
+      {
+        "targets": [
+          {
+            "content": "0:15-0:16",
+            "removal": "0:14-0:16"
+          }
+        ],
+        "domain": "0:15-0:16"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/statement/statement.while2",
+    "languageId": "shellscript",
+    "facet": "statement.while",
+    "code": "until true; do :; done",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:22",
+            "removal": "0:0-0:22"
+          }
+        ],
+        "domain": "0:0-0:22"
+      },
+      {
+        "targets": [
+          {
+            "content": "0:15-0:16",
+            "removal": "0:14-0:16"
+          }
+        ],
+        "domain": "0:15-0:16"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/statement/statement.assignment.compound",
+    "languageId": "swift",
+    "facet": "statement.assignment.compound",
+    "code": "foo += 1",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:8",
+            "removal": "0:0-0:8"
+          }
+        ],
+        "domain": "0:0-0:8"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/statement/statement.assignment.destructuring",
+    "languageId": "swift",
+    "facet": "statement.assignment.destructuring",
+    "code": "(foo, bar) = (0, 1)",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:19",
+            "removal": "0:0-0:19"
+          }
+        ],
+        "domain": "0:0-0:19"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/statement/statement.assignment",
+    "languageId": "swift",
+    "facet": "statement.assignment",
+    "code": "foo = 0",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:7",
+            "removal": "0:0-0:7"
+          }
+        ],
+        "domain": "0:0-0:7"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/statement/statement.break",
+    "languageId": "swift",
+    "facet": "statement.break",
+    "code": "while true {\n    break\n}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-2:1",
+            "removal": "0:0-2:1"
+          }
+        ],
+        "domain": "0:0-2:1"
+      },
+      {
+        "targets": [
+          {
+            "content": "1:4-1:9",
+            "removal": "1:0-2:0"
+          }
+        ],
+        "domain": "1:4-1:9"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/statement/statement.class",
+    "languageId": "swift",
+    "facet": "statement.class",
+    "code": "class Foo {}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:12",
+            "removal": "0:0-0:12"
+          }
+        ],
+        "domain": "0:0-0:12"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/statement/statement.constant",
+    "languageId": "swift",
+    "facet": "statement.constant",
+    "code": "let foo = 0",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:11",
+            "removal": "0:0-0:11"
+          }
+        ],
+        "domain": "0:0-0:11"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/statement/statement.constructor",
+    "languageId": "swift",
+    "facet": "statement.constructor",
+    "code": "struct Foo {\n  init() {}\n}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-2:1",
+            "removal": "0:0-2:1"
+          }
+        ],
+        "domain": "0:0-2:1"
+      },
+      {
+        "targets": [
+          {
+            "content": "1:2-1:11",
+            "removal": "1:0-2:0"
+          }
+        ],
+        "domain": "1:2-1:11"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/statement/statement.continue",
+    "languageId": "swift",
+    "facet": "statement.continue",
+    "code": "while true {\n    continue\n}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-2:1",
+            "removal": "0:0-2:1"
+          }
+        ],
+        "domain": "0:0-2:1"
+      },
+      {
+        "targets": [
+          {
+            "content": "1:4-1:12",
+            "removal": "1:0-2:0"
+          }
+        ],
+        "domain": "1:4-1:12"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/statement/statement.doWhile",
+    "languageId": "swift",
+    "facet": "statement.doWhile",
+    "code": "repeat {} while foo",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:19",
+            "removal": "0:0-0:19"
+          }
+        ],
+        "domain": "0:0-0:19"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/statement/statement.enum",
+    "languageId": "swift",
+    "facet": "statement.enum",
+    "code": "enum Foo {}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:11",
+            "removal": "0:0-0:11"
+          }
+        ],
+        "domain": "0:0-0:11"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/statement/statement.field.class",
+    "languageId": "swift",
+    "facet": "statement.field.class",
+    "code": "struct Foo {\n  var bar = 0\n}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-2:1",
+            "removal": "0:0-2:1"
+          }
+        ],
+        "domain": "0:0-2:1"
+      },
+      {
+        "targets": [
+          {
+            "content": "1:2-1:13",
+            "removal": "1:0-2:0"
+          }
+        ],
+        "domain": "1:2-1:13"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/statement/statement.field.interface",
+    "languageId": "swift",
+    "facet": "statement.field.interface",
+    "code": "protocol Foo {\n  var bar: Int { get set }\n}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-2:1",
+            "removal": "0:0-2:1"
+          }
+        ],
+        "domain": "0:0-2:1"
+      },
+      {
+        "targets": [
+          {
+            "content": "1:2-1:26",
+            "removal": "1:0-2:0"
+          }
+        ],
+        "domain": "1:2-1:26"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/statement/statement.foreach",
+    "languageId": "swift",
+    "facet": "statement.foreach",
+    "code": "for v in values {}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:18",
+            "removal": "0:0-0:18"
+          }
+        ],
+        "domain": "0:0-0:18"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/statement/statement.function",
+    "languageId": "swift",
+    "facet": "statement.function",
+    "code": "func foo() {}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:13",
+            "removal": "0:0-0:13"
+          }
+        ],
+        "domain": "0:0-0:13"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/statement/statement.functionCall",
+    "languageId": "swift",
+    "facet": "statement.functionCall",
+    "code": "foo()",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:5",
+            "removal": "0:0-0:5"
+          }
+        ],
+        "domain": "0:0-0:5"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/statement/statement.if",
+    "languageId": "swift",
+    "facet": "statement.if",
+    "code": "if true {}\nelse if false {}\nelse {}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-2:7",
+            "removal": "0:0-2:7"
+          }
+        ],
+        "domain": "0:0-2:7"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/statement/statement.import",
+    "languageId": "swift",
+    "facet": "statement.import",
+    "code": "import Foo",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:10",
+            "removal": "0:0-0:10"
+          }
+        ],
+        "domain": "0:0-0:10"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/statement/statement.interface",
+    "languageId": "swift",
+    "facet": "statement.interface",
+    "code": "protocol Foo {}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:15",
+            "removal": "0:0-0:15"
+          }
+        ],
+        "domain": "0:0-0:15"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/statement/statement.iteration.block",
+    "languageId": "swift",
+    "facet": "statement.iteration.block",
+    "code": "struct Foo {\n    func bar() { }\n}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-2:1"
+          }
+        ],
+        "domain": "0:0-2:1"
+      },
+      {
+        "targets": [
+          {
+            "content": "0:12-2:0"
+          }
+        ],
+        "domain": "0:12-2:0"
+      },
+      {
+        "targets": [
+          {
+            "content": "1:16-1:17"
+          }
+        ],
+        "domain": "1:16-1:17"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/statement/statement.iteration.block2",
+    "languageId": "swift",
+    "facet": "statement.iteration.block",
+    "code": "func foo() { }",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:14"
+          }
+        ],
+        "domain": "0:0-0:14"
+      },
+      {
+        "targets": [
+          {
+            "content": "0:12-0:13"
+          }
+        ],
+        "domain": "0:12-0:13"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/statement/statement.iteration.block3",
+    "languageId": "swift",
+    "facet": "statement.iteration.block",
+    "code": "if true { }\nelse if false { }\nelse { }",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-2:8"
+          }
+        ],
+        "domain": "0:0-2:8"
+      },
+      {
+        "targets": [
+          {
+            "content": "0:9-0:10"
+          }
+        ],
+        "domain": "0:9-0:10"
+      },
+      {
+        "targets": [
+          {
+            "content": "1:15-1:16"
+          }
+        ],
+        "domain": "1:15-1:16"
+      },
+      {
+        "targets": [
+          {
+            "content": "2:6-2:7"
+          }
+        ],
+        "domain": "2:6-2:7"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/statement/statement.iteration.block4",
+    "languageId": "swift",
+    "facet": "statement.iteration.block",
+    "code": "while true { }",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:14"
+          }
+        ],
+        "domain": "0:0-0:14"
+      },
+      {
+        "targets": [
+          {
+            "content": "0:12-0:13"
+          }
+        ],
+        "domain": "0:12-0:13"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/statement/statement.iteration.class",
+    "languageId": "swift",
+    "facet": "statement.iteration.class",
+    "code": "class Foo { }",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:13"
+          }
+        ],
+        "domain": "0:0-0:13"
+      },
+      {
+        "targets": [
+          {
+            "content": "0:11-0:12"
+          }
+        ],
+        "domain": "0:11-0:12"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/statement/statement.iteration.document",
+    "languageId": "swift",
+    "facet": "statement.iteration.document",
+    "code": "\nvar foo: Int\n",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-2:0"
+          }
+        ],
+        "domain": "0:0-2:0"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/statement/statement.iteration.interface",
+    "languageId": "swift",
+    "facet": "statement.iteration.interface",
+    "code": "protocol Foo { }",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:16"
+          }
+        ],
+        "domain": "0:0-0:16"
+      },
+      {
+        "targets": [
+          {
+            "content": "0:14-0:15"
+          }
+        ],
+        "domain": "0:14-0:15"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/statement/statement.method.interface",
+    "languageId": "swift",
+    "facet": "statement.method.interface",
+    "code": "protocol Foo {\n  func bar()\n}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-2:1",
+            "removal": "0:0-2:1"
+          }
+        ],
+        "domain": "0:0-2:1"
+      },
+      {
+        "targets": [
+          {
+            "content": "1:2-1:12",
+            "removal": "1:0-2:0"
+          }
+        ],
+        "domain": "1:2-1:12"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/statement/statement.method",
+    "languageId": "swift",
+    "facet": "statement.method",
+    "code": "struct Foo {\n  func bar() {}\n}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-2:1",
+            "removal": "0:0-2:1"
+          }
+        ],
+        "domain": "0:0-2:1"
+      },
+      {
+        "targets": [
+          {
+            "content": "1:2-1:15",
+            "removal": "1:0-2:0"
+          }
+        ],
+        "domain": "1:2-1:15"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/statement/statement.return",
+    "languageId": "swift",
+    "facet": "statement.return",
+    "code": "func foo() {\n    return 0\n}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-2:1",
+            "removal": "0:0-2:1"
+          }
+        ],
+        "domain": "0:0-2:1"
+      },
+      {
+        "targets": [
+          {
+            "content": "1:4-1:12",
+            "removal": "1:0-2:0"
+          }
+        ],
+        "domain": "1:4-1:12"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/statement/statement.switch",
+    "languageId": "swift",
+    "facet": "statement.switch",
+    "code": "switch value {}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:15",
+            "removal": "0:0-0:15"
+          }
+        ],
+        "domain": "0:0-0:15"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/statement/statement.throw",
+    "languageId": "swift",
+    "facet": "statement.throw",
+    "code": "func foo() throws {\n    throw Error\n}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-2:1",
+            "removal": "0:0-2:1"
+          }
+        ],
+        "domain": "0:0-2:1"
+      },
+      {
+        "targets": [
+          {
+            "content": "1:4-1:15",
+            "removal": "1:0-2:0"
+          }
+        ],
+        "domain": "1:4-1:15"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/statement/statement.try",
+    "languageId": "swift",
+    "facet": "statement.try",
+    "code": "do {}\ncatch {}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-1:8",
+            "removal": "0:0-1:8"
+          }
+        ],
+        "domain": "0:0-1:8"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/statement/statement.typeAlias",
+    "languageId": "swift",
+    "facet": "statement.typeAlias",
+    "code": "typealias Foo = Int",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:19",
+            "removal": "0:0-0:19"
+          }
+        ],
+        "domain": "0:0-0:19"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/statement/statement.variable.destructuring",
+    "languageId": "swift",
+    "facet": "statement.variable.destructuring",
+    "code": "let (foo, bar) = (0, 1)",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:23",
+            "removal": "0:0-0:23"
+          }
+        ],
+        "domain": "0:0-0:23"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/statement/statement.variable.initialized",
+    "languageId": "swift",
+    "facet": "statement.variable.initialized",
+    "code": "var foo = 0",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:11",
+            "removal": "0:0-0:11"
+          }
+        ],
+        "domain": "0:0-0:11"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/statement/statement.variable.uninitialized",
+    "languageId": "swift",
+    "facet": "statement.variable.uninitialized",
+    "code": "var foo: Int",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:12",
+            "removal": "0:0-0:12"
+          }
+        ],
+        "domain": "0:0-0:12"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/statement/statement.while",
+    "languageId": "swift",
+    "facet": "statement.while",
+    "code": "while true {}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:13",
+            "removal": "0:0-0:13"
+          }
+        ],
+        "domain": "0:0-0:13"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/statement/statement.yield",
+    "languageId": "swift",
+    "facet": "statement.yield",
+    "code": "var foo: Int {\n    _read {\n        yield 0\n    }\n}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-4:1",
+            "removal": "0:0-4:1"
+          }
+        ],
+        "domain": "0:0-4:1"
+      },
+      {
+        "targets": [
+          {
+            "content": "1:4-3:5",
+            "removal": "1:0-4:0"
+          }
+        ],
+        "domain": "1:4-3:5"
+      },
+      {
+        "targets": [
+          {
+            "content": "2:8-2:15",
+            "removal": "2:0-3:0"
+          }
+        ],
+        "domain": "2:8-2:15"
       }
     ]
   },

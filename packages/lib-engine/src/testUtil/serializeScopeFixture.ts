@@ -51,9 +51,9 @@ function serializeScopeFixtureHelper(
   codeLines: string[],
   scopes: string[],
 ): string {
-  const serializedScopes = scopes.join("\n\n");
+  const serializedScopes = scopes.join("\n\n").trimStart();
 
-  return [...codeLines, "---", serializedScopes, ""].join("\n");
+  return [...codeLines, "---", "", serializedScopes, ""].join("\n");
 }
 
 function serializeScope(
@@ -207,6 +207,19 @@ function serializeTarget({
       );
     }
     lines.push(serializeTargetRange(codeLines, group.range));
+  }
+
+  if (target.prefixRange != null) {
+    lines.push(
+      "",
+      serializeHeader({
+        header: "Prefix",
+        scopeNumber,
+        targetNumber,
+        range: target.prefixRange,
+      }),
+      serializeTargetRange(codeLines, target.prefixRange),
+    );
   }
 
   if (target.leadingDelimiter != null) {

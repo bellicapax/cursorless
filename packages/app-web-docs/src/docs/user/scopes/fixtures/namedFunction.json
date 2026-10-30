@@ -533,6 +533,23 @@
     ]
   },
   {
+    "name": "scopes/java/namedFunction.constructor3",
+    "languageId": "java",
+    "facet": "namedFunction.constructor",
+    "code": "record Foo() {\n    Foo {}\n}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "1:4-1:10",
+            "removal": "1:0-2:0"
+          }
+        ],
+        "domain": "1:4-1:10"
+      }
+    ]
+  },
+  {
     "name": "scopes/java/namedFunction.iteration.class",
     "languageId": "java",
     "facet": "namedFunction.iteration.class",
@@ -545,6 +562,22 @@
           }
         ],
         "domain": "0:11-0:12"
+      }
+    ]
+  },
+  {
+    "name": "scopes/java/namedFunction.iteration.class2",
+    "languageId": "java",
+    "facet": "namedFunction.iteration.class",
+    "code": "record Foo() { }",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:14-0:15"
+          }
+        ],
+        "domain": "0:14-0:15"
       }
     ]
   },
@@ -579,6 +612,23 @@
           }
         ],
         "domain": "1:4-2:24"
+      }
+    ]
+  },
+  {
+    "name": "scopes/java/namedFunction.method3",
+    "languageId": "java",
+    "facet": "namedFunction.method",
+    "code": "record Foo() {\n    void bar() {}\n}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "1:4-1:17",
+            "removal": "1:0-2:0"
+          }
+        ],
+        "domain": "1:4-1:17"
       }
     ]
   },
@@ -1890,6 +1940,181 @@
           }
         ],
         "domain": "0:0-0:15"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/namedFunction/namedFunction.iteration.document",
+    "languageId": "shellscript",
+    "facet": "namedFunction.iteration.document",
+    "code": "\nfoo() {}\n",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-2:0"
+          }
+        ],
+        "domain": "0:0-2:0"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/namedFunction/namedFunction",
+    "languageId": "shellscript",
+    "facet": "namedFunction",
+    "code": "foo() {}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:8",
+            "removal": "0:0-0:8"
+          }
+        ],
+        "domain": "0:0-0:8"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/namedFunction/namedFunction2",
+    "languageId": "shellscript",
+    "facet": "namedFunction",
+    "code": "function foo {}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:15",
+            "removal": "0:0-0:15"
+          }
+        ],
+        "domain": "0:0-0:15"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/namedFunction/namedFunction3",
+    "languageId": "shellscript",
+    "facet": "namedFunction",
+    "code": "function foo() {}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:17",
+            "removal": "0:0-0:17"
+          }
+        ],
+        "domain": "0:0-0:17"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/namedFunction/namedFunction4",
+    "languageId": "shellscript",
+    "facet": "namedFunction",
+    "code": "foo() ()",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:8",
+            "removal": "0:0-0:8"
+          }
+        ],
+        "domain": "0:0-0:8"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/namedFunction/namedFunction.constructor",
+    "languageId": "swift",
+    "facet": "namedFunction.constructor",
+    "code": "struct Foo {\n  init() {}\n}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "1:2-1:11",
+            "removal": "1:0-2:0"
+          }
+        ],
+        "domain": "1:2-1:11"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/namedFunction/namedFunction.iteration.class",
+    "languageId": "swift",
+    "facet": "namedFunction.iteration.class",
+    "code": "struct Foo { }",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:14"
+          }
+        ],
+        "domain": "0:0-0:14"
+      },
+      {
+        "targets": [
+          {
+            "content": "0:12-0:13"
+          }
+        ],
+        "domain": "0:12-0:13"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/namedFunction/namedFunction.iteration.document",
+    "languageId": "swift",
+    "facet": "namedFunction.iteration.document",
+    "code": "\nfunc foo() {}\n",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-2:0"
+          }
+        ],
+        "domain": "0:0-2:0"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/namedFunction/namedFunction.method",
+    "languageId": "swift",
+    "facet": "namedFunction.method",
+    "code": "struct Foo {\n  func bar() {}\n}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "1:2-1:15",
+            "removal": "1:0-2:0"
+          }
+        ],
+        "domain": "1:2-1:15"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/namedFunction/namedFunction",
+    "languageId": "swift",
+    "facet": "namedFunction",
+    "code": "func foo() {}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:13",
+            "removal": "0:0-0:13"
+          }
+        ],
+        "domain": "0:0-0:13"
       }
     ]
   },

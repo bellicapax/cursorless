@@ -19,6 +19,21 @@ In addition to the above aspects, you can also use the following inline operator
 - `@foo.start` and `@foo.end` to construct the scope using a range between two nodes (inclusive).
 - `@foo.startOf` and `@foo.endOf` to refer to the start and end positions of a node. For example, you could use `@foo.start.endOf` to indicate that the scope should start at the end of the node.
 
+## Capture groups
+
+Use `@G_` followed by at least two underscore-separated scope names to give the same capture to multiple scopes. For example, `@G_value_name_namedFunction` expands to `@value`, `@name`, and `@namedFunction`. The `G_` prefix is discarded. Every scope name in the group must be valid.
+
+A dot suffix applies to every scope in the group. For example, `@G_value_name_namedFunction.start` expands to `@value.start`, `@name.start`, and `@namedFunction.start`. This also works with relationships and inline operators. A Java block can share iteration boundaries without repeating the capture for each scope:
+
+```scm
+(_
+  "{" @G_statement_name_value_type.iteration.start.endOf
+  "}" @G_statement_name_value_type.iteration.end.startOf
+)
+```
+
+Predicates refer to the group capture and apply their changes to every expanded capture.
+
 ## Query predicate operators
 
 We also support a number of query predicate operators for modifying the scope. See [`queryPredicateOperators.ts`](../../../../../packages/lib-engine/src/languages/TreeSitterQuery/queryPredicateOperators.ts) for a list of available operators.

@@ -1,5 +1,22 @@
 [
   {
+    "name": "scopes/clojure/regularExpression",
+    "languageId": "clojure",
+    "facet": "regularExpression",
+    "code": "#\"^\\w+$\"",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:8",
+            "removal": "0:0-0:8"
+          }
+        ],
+        "domain": "0:0-0:8"
+      }
+    ]
+  },
+  {
     "name": "scopes/javascript.core/regularExpression",
     "languageId": "javascript.core",
     "facet": "regularExpression",
@@ -30,6 +47,40 @@
           }
         ],
         "domain": "0:0-0:8"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/regularExpression",
+    "languageId": "shellscript",
+    "facet": "regularExpression",
+    "code": "[[ $foo =~ ^\\w+$ ]]",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:11-0:16",
+            "removal": "0:11-0:17"
+          }
+        ],
+        "domain": "0:11-0:16"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/regularExpression",
+    "languageId": "swift",
+    "facet": "regularExpression",
+    "code": "/\\d+$/",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:6",
+            "removal": "0:0-0:6"
+          }
+        ],
+        "domain": "0:0-0:6"
       }
     ]
   }

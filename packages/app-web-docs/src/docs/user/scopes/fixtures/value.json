@@ -3,7 +3,7 @@
     "name": "scopes/c/value/value.assignment.compound",
     "languageId": "c",
     "facet": "value.assignment.compound",
-    "code": "foo += 0;",
+    "code": "foo += 1;",
     "scopes": [
       {
         "targets": [
@@ -37,7 +37,7 @@
     "name": "scopes/c/value/value.assignment2",
     "languageId": "c",
     "facet": "value.assignment",
-    "code": "foo += 0;",
+    "code": "foo += 1;",
     "scopes": [
       {
         "targets": [
@@ -306,16 +306,16 @@
     "name": "scopes/c/value/value.switch",
     "languageId": "c",
     "facet": "value.switch",
-    "code": "switch (foo) {}",
+    "code": "switch (value) {}",
     "scopes": [
       {
         "targets": [
           {
-            "content": "0:8-0:11",
-            "removal": "0:8-0:11"
+            "content": "0:8-0:13",
+            "removal": "0:8-0:13"
           }
         ],
-        "domain": "0:0-0:15"
+        "domain": "0:0-0:17"
       }
     ]
   },
@@ -573,7 +573,7 @@
     "name": "scopes/cpp/value/value.assignment.compound",
     "languageId": "cpp",
     "facet": "value.assignment.compound",
-    "code": "foo += 0;",
+    "code": "foo += 1;",
     "scopes": [
       {
         "targets": [
@@ -998,7 +998,7 @@
     "name": "scopes/csharp/value/value.assignment.compound",
     "languageId": "csharp",
     "facet": "value.assignment.compound",
-    "code": "foo += 0;",
+    "code": "foo += 1;",
     "scopes": [
       {
         "targets": [
@@ -1032,7 +1032,7 @@
     "name": "scopes/csharp/value/value.assignment2",
     "languageId": "csharp",
     "facet": "value.assignment",
-    "code": "foo += 0;",
+    "code": "foo += 1;",
     "scopes": [
       {
         "targets": [
@@ -1888,7 +1888,7 @@
     "name": "scopes/dart/value/value.assignment.compound",
     "languageId": "dart",
     "facet": "value.assignment.compound",
-    "code": "void main() {\n    foo += 0;\n}",
+    "code": "void main() {\n    foo += 1;\n}",
     "scopes": [
       {
         "targets": [
@@ -2241,16 +2241,16 @@
     "name": "scopes/dart/value/value.switch",
     "languageId": "dart",
     "facet": "value.switch",
-    "code": "void main() {\n    switch (foo) {}\n}",
+    "code": "void main() {\n    switch (value) {}\n}",
     "scopes": [
       {
         "targets": [
           {
-            "content": "1:12-1:15",
-            "removal": "1:12-1:15"
+            "content": "1:12-1:17",
+            "removal": "1:12-1:17"
           }
         ],
-        "domain": "1:4-1:19"
+        "domain": "1:4-1:21"
       }
     ]
   },
@@ -2326,7 +2326,7 @@
     "name": "scopes/go/value/value.assignment.compound",
     "languageId": "go",
     "facet": "value.assignment.compound",
-    "code": "foo += 0",
+    "code": "foo += 1",
     "scopes": [
       {
         "targets": [
@@ -2549,16 +2549,16 @@
     "name": "scopes/go/value/value.switch",
     "languageId": "go",
     "facet": "value.switch",
-    "code": "switch foo {}",
+    "code": "switch value {}",
     "scopes": [
       {
         "targets": [
           {
-            "content": "0:7-0:10",
-            "removal": "0:7-0:11"
+            "content": "0:7-0:12",
+            "removal": "0:7-0:13"
           }
         ],
-        "domain": "0:0-0:13"
+        "domain": "0:0-0:15"
       }
     ]
   },
@@ -2668,7 +2668,7 @@
     "name": "scopes/java/value/value.assignment.compound",
     "languageId": "java",
     "facet": "value.assignment.compound",
-    "code": "foo += 0;",
+    "code": "foo += 1;",
     "scopes": [
       {
         "targets": [
@@ -2702,7 +2702,7 @@
     "name": "scopes/java/value/value.assignment2",
     "languageId": "java",
     "facet": "value.assignment",
-    "code": "foo += 0;",
+    "code": "foo += 1;",
     "scopes": [
       {
         "targets": [
@@ -2746,6 +2746,23 @@
           }
         ],
         "domain": "1:4-1:24"
+      }
+    ]
+  },
+  {
+    "name": "scopes/java/value/value.field.class2",
+    "languageId": "java",
+    "facet": "value.field.class",
+    "code": "record Foo() {\n    static int bar = 0;\n}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "1:21-1:22",
+            "removal": "1:18-1:22"
+          }
+        ],
+        "domain": "1:4-1:23"
       }
     ]
   },
@@ -3073,13 +3090,13 @@
     "name": "scopes/java/value/value.yield",
     "languageId": "java",
     "facet": "value.yield",
-    "code": "switch (foo) {\n    case 0:\n        yield 0;\n}",
+    "code": "switch (value) {\n    case 0:\n        yield 0;\n}",
     "scopes": [
       {
         "targets": [
           {
-            "content": "0:8-0:11",
-            "removal": "0:8-0:11"
+            "content": "0:8-0:13",
+            "removal": "0:8-0:13"
           }
         ],
         "domain": "0:0-3:1"
@@ -3315,7 +3332,7 @@
     "name": "scopes/javascript.core/value/value.assignment.compound",
     "languageId": "javascript.core",
     "facet": "value.assignment.compound",
-    "code": "foo += 0;",
+    "code": "foo += 1;",
     "scopes": [
       {
         "targets": [
@@ -3366,7 +3383,7 @@
     "name": "scopes/javascript.core/value/value.assignment2",
     "languageId": "javascript.core",
     "facet": "value.assignment",
-    "code": "foo += 0;",
+    "code": "foo += 1;",
     "scopes": [
       {
         "targets": [
@@ -4140,7 +4157,7 @@
     "name": "scopes/kotlin/value/value.assignment.compound",
     "languageId": "kotlin",
     "facet": "value.assignment.compound",
-    "code": "foo += 0",
+    "code": "foo += 1",
     "scopes": [
       {
         "targets": [
@@ -5239,7 +5256,7 @@
     "name": "scopes/php/value/value.assignment.compound",
     "languageId": "php",
     "facet": "value.assignment.compound",
-    "code": "<?php\n$foo += 0;",
+    "code": "<?php\n$foo += 1;",
     "scopes": [
       {
         "targets": [
@@ -5273,7 +5290,7 @@
     "name": "scopes/php/value/value.assignment2",
     "languageId": "php",
     "facet": "value.assignment",
-    "code": "<?php\n$foo += 0;",
+    "code": "<?php\n$foo += 1;",
     "scopes": [
       {
         "targets": [
@@ -5626,16 +5643,16 @@
     "name": "scopes/php/value/value.switch",
     "languageId": "php",
     "facet": "value.switch",
-    "code": "<?php\nswitch ($foo) {}",
+    "code": "<?php\nswitch ($value) {}",
     "scopes": [
       {
         "targets": [
           {
-            "content": "1:8-1:12",
-            "removal": "1:8-1:12"
+            "content": "1:8-1:14",
+            "removal": "1:8-1:14"
           }
         ],
-        "domain": "1:0-1:16"
+        "domain": "1:0-1:18"
       }
     ]
   },
@@ -6050,7 +6067,7 @@
     "name": "scopes/python/value/value.assignment.compound",
     "languageId": "python",
     "facet": "value.assignment.compound",
-    "code": "foo += 0",
+    "code": "foo += 1",
     "scopes": [
       {
         "targets": [
@@ -6101,7 +6118,7 @@
     "name": "scopes/python/value/value.assignment2",
     "languageId": "python",
     "facet": "value.assignment",
-    "code": "foo += 0",
+    "code": "foo += 1",
     "scopes": [
       {
         "targets": [
@@ -6829,16 +6846,16 @@
     "name": "scopes/r/value/value.switch",
     "languageId": "r",
     "facet": "value.switch",
-    "code": "switch(foo)",
+    "code": "switch(value)",
     "scopes": [
       {
         "targets": [
           {
-            "content": "0:7-0:10",
-            "removal": "0:7-0:10"
+            "content": "0:7-0:12",
+            "removal": "0:7-0:12"
           }
         ],
-        "domain": "0:0-0:11"
+        "domain": "0:0-0:13"
       }
     ]
   },
@@ -7434,7 +7451,7 @@
     "name": "scopes/rust/value/value.assignment.compound",
     "languageId": "rust",
     "facet": "value.assignment.compound",
-    "code": "foo += 0;",
+    "code": "foo += 1;",
     "scopes": [
       {
         "targets": [
@@ -7772,16 +7789,16 @@
     "name": "scopes/rust/value/value.switch",
     "languageId": "rust",
     "facet": "value.switch",
-    "code": "match foo {}",
+    "code": "match value {}",
     "scopes": [
       {
         "targets": [
           {
-            "content": "0:6-0:9",
-            "removal": "0:6-0:10"
+            "content": "0:6-0:11",
+            "removal": "0:6-0:12"
           }
         ],
-        "domain": "0:0-0:12"
+        "domain": "0:0-0:14"
       }
     ]
   },
@@ -8065,7 +8082,7 @@
     "name": "scopes/scala/value/value.assignment.compound",
     "languageId": "scala",
     "facet": "value.assignment.compound",
-    "code": "foo += 0",
+    "code": "foo += 1",
     "scopes": [
       {
         "targets": [
@@ -8541,6 +8558,1220 @@
           }
         ],
         "domain": "1:4-1:14"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/value/value.assignment.compound",
+    "languageId": "shellscript",
+    "facet": "value.assignment.compound",
+    "code": "foo+=0",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:5-0:6",
+            "removal": "0:3-0:6"
+          }
+        ],
+        "domain": "0:0-0:6"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/value/value.assignment",
+    "languageId": "shellscript",
+    "facet": "value.assignment",
+    "code": "foo=0",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:4-0:5",
+            "removal": "0:3-0:5"
+          }
+        ],
+        "domain": "0:0-0:5"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/value/value.constant",
+    "languageId": "shellscript",
+    "facet": "value.constant",
+    "code": "readonly foo=0",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:13-0:14",
+            "removal": "0:12-0:14"
+          }
+        ],
+        "domain": "0:0-0:14"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/value/value.foreach",
+    "languageId": "shellscript",
+    "facet": "value.foreach",
+    "code": "for v in values; do :; done",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:9-0:15",
+            "removal": "0:8-0:15"
+          }
+        ],
+        "domain": "0:0-0:27"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/value/value.foreach2",
+    "languageId": "shellscript",
+    "facet": "value.foreach",
+    "code": "for v in aaa bbb ccc; do :; done",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:9-0:20",
+            "removal": "0:8-0:20"
+          }
+        ],
+        "domain": "0:0-0:32"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/value/value.iteration.block",
+    "languageId": "shellscript",
+    "facet": "value.iteration.block",
+    "code": "foo() { }",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:9"
+          }
+        ],
+        "domain": "0:0-0:9"
+      },
+      {
+        "targets": [
+          {
+            "content": "0:7-0:8"
+          }
+        ],
+        "domain": "0:7-0:8"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/value/value.iteration.block2",
+    "languageId": "shellscript",
+    "facet": "value.iteration.block",
+    "code": "if true; then\n    :\nelif false; then\n    :\nelse\n    :\nfi",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-6:2"
+          }
+        ],
+        "domain": "0:0-6:2"
+      },
+      {
+        "targets": [
+          {
+            "content": "0:13-2:0"
+          }
+        ],
+        "domain": "0:13-2:0"
+      },
+      {
+        "targets": [
+          {
+            "content": "2:16-4:0"
+          }
+        ],
+        "domain": "2:16-4:0"
+      },
+      {
+        "targets": [
+          {
+            "content": "4:4-6:0"
+          }
+        ],
+        "domain": "4:4-6:0"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/value/value.iteration.block3",
+    "languageId": "shellscript",
+    "facet": "value.iteration.block",
+    "code": "while true; do :; done",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:22"
+          }
+        ],
+        "domain": "0:0-0:22"
+      },
+      {
+        "targets": [
+          {
+            "content": "0:14-0:18"
+          }
+        ],
+        "domain": "0:14-0:18"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/value/value.iteration.block4",
+    "languageId": "shellscript",
+    "facet": "value.iteration.block",
+    "code": "case $foo in\n    0) bar=0 ;;\nesac",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-2:4"
+          }
+        ],
+        "domain": "0:0-2:4"
+      },
+      {
+        "targets": [
+          {
+            "content": "1:6-1:13"
+          }
+        ],
+        "domain": "1:6-1:13"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/value/value.iteration.block5",
+    "languageId": "shellscript",
+    "facet": "value.iteration.block",
+    "code": "case $foo in\n  0) : ;&\n  1) : ;;&\n  *) : ;;\nesac",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-4:4"
+          }
+        ],
+        "domain": "0:0-4:4"
+      },
+      {
+        "targets": [
+          {
+            "content": "1:4-1:7"
+          }
+        ],
+        "domain": "1:4-1:7"
+      },
+      {
+        "targets": [
+          {
+            "content": "2:4-2:7"
+          }
+        ],
+        "domain": "2:4-2:7"
+      },
+      {
+        "targets": [
+          {
+            "content": "3:4-3:7"
+          }
+        ],
+        "domain": "3:4-3:7"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/value/value.iteration.document",
+    "languageId": "shellscript",
+    "facet": "value.iteration.document",
+    "code": "\ndeclare foo\n",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-2:0"
+          }
+        ],
+        "domain": "0:0-2:0"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/value/value.mapPair.iteration",
+    "languageId": "shellscript",
+    "facet": "value.mapPair.iteration",
+    "code": "foo=([\"aaa\"]=0 [\"bbb\"]=1)",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:25"
+          }
+        ],
+        "domain": "0:0-0:25"
+      },
+      {
+        "targets": [
+          {
+            "content": "0:5-0:24"
+          }
+        ],
+        "domain": "0:5-0:24"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/value/value.mapPair.iteration2",
+    "languageId": "shellscript",
+    "facet": "value.mapPair.iteration",
+    "code": "foo=(\"aaa\"$bar bbb)\nbar=([\"aaa\"] bbb)\nbaz=(\"[aaa]=0\" bbb)\nbongo=([\"aaa\"]=0)",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-3:17"
+          }
+        ],
+        "domain": "0:0-3:17"
+      },
+      {
+        "targets": [
+          {
+            "content": "3:7-3:16"
+          }
+        ],
+        "domain": "3:7-3:16"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/value/value.mapPair",
+    "languageId": "shellscript",
+    "facet": "value.mapPair",
+    "code": "foo=([\"aaa\"]=0 [\"bbb\"]=1)",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:4-0:25",
+            "removal": "0:3-0:25"
+          }
+        ],
+        "domain": "0:0-0:25"
+      },
+      {
+        "targets": [
+          {
+            "content": "0:13-0:14",
+            "removal": "0:13-0:14"
+          }
+        ],
+        "domain": "0:5-0:14"
+      },
+      {
+        "targets": [
+          {
+            "content": "0:23-0:24",
+            "removal": "0:23-0:24"
+          }
+        ],
+        "domain": "0:15-0:24"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/value/value.mapPair2",
+    "languageId": "shellscript",
+    "facet": "value.mapPair",
+    "code": "foo=(\"aaa\"$bar bbb)\nbar=([\"aaa\"] bbb)\nbaz=(\"[aaa]=0\" bbb)\nbongo=([\"aaa\"]=0)",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:4-0:19",
+            "removal": "0:3-0:19"
+          }
+        ],
+        "domain": "0:0-0:19"
+      },
+      {
+        "targets": [
+          {
+            "content": "1:4-1:17",
+            "removal": "1:3-1:17"
+          }
+        ],
+        "domain": "1:0-1:17"
+      },
+      {
+        "targets": [
+          {
+            "content": "2:4-2:19",
+            "removal": "2:3-2:19"
+          }
+        ],
+        "domain": "2:0-2:19"
+      },
+      {
+        "targets": [
+          {
+            "content": "3:6-3:17",
+            "removal": "3:5-3:17"
+          }
+        ],
+        "domain": "3:0-3:17"
+      },
+      {
+        "targets": [
+          {
+            "content": "3:15-3:16",
+            "removal": "3:15-3:16"
+          }
+        ],
+        "domain": "3:7-3:16"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/value/value.mapPair3",
+    "languageId": "shellscript",
+    "facet": "value.mapPair",
+    "code": "foo=([\"aaa\"]=\"bbb\"$bar)",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:4-0:23",
+            "removal": "0:3-0:23"
+          }
+        ],
+        "domain": "0:0-0:23"
+      },
+      {
+        "targets": [
+          {
+            "content": "0:13-0:22",
+            "removal": "0:13-0:22"
+          }
+        ],
+        "domain": "0:5-0:22"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/value/value.return",
+    "languageId": "shellscript",
+    "facet": "value.return",
+    "code": "foo() {\n    return 0;\n}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "1:11-1:12",
+            "removal": "1:10-1:12"
+          }
+        ],
+        "domain": "1:4-1:12"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/value/value.return2",
+    "languageId": "shellscript",
+    "facet": "value.return",
+    "code": "function foo {\n    return 0;\n}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "1:11-1:12",
+            "removal": "1:10-1:12"
+          }
+        ],
+        "domain": "1:4-1:12"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/value/value.switch",
+    "languageId": "shellscript",
+    "facet": "value.switch",
+    "code": "case $foo in esac",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:5-0:9",
+            "removal": "0:5-0:10"
+          }
+        ],
+        "domain": "0:0-0:17"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/value/value.variable",
+    "languageId": "shellscript",
+    "facet": "value.variable",
+    "code": "local foo=0",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:10-0:11",
+            "removal": "0:9-0:11"
+          }
+        ],
+        "domain": "0:0-0:11"
+      }
+    ]
+  },
+  {
+    "name": "scopes/shellscript/value/value.variable2",
+    "languageId": "shellscript",
+    "facet": "value.variable",
+    "code": "declare foo=0",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:12-0:13",
+            "removal": "0:11-0:13"
+          }
+        ],
+        "domain": "0:0-0:13"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/value/value.argument.actual.iteration",
+    "languageId": "swift",
+    "facet": "value.argument.actual.iteration",
+    "code": "foo(aaa: 0, bbb: 1)",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:19"
+          }
+        ],
+        "domain": "0:0-0:19"
+      },
+      {
+        "targets": [
+          {
+            "content": "0:4-0:18"
+          }
+        ],
+        "domain": "0:4-0:18"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/value/value.argument.actual",
+    "languageId": "swift",
+    "facet": "value.argument.actual",
+    "code": "foo(aaa: 0, bbb: 1)",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:9-0:10",
+            "removal": "0:7-0:10"
+          }
+        ],
+        "domain": "0:4-0:10"
+      },
+      {
+        "targets": [
+          {
+            "content": "0:17-0:18",
+            "removal": "0:15-0:18"
+          }
+        ],
+        "domain": "0:12-0:18"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/value/value.argument.formal.constructor.iteration",
+    "languageId": "swift",
+    "facet": "value.argument.formal.constructor.iteration",
+    "code": "struct Foo {\n    init(aaa: Int = 0, bbb: Int = 1) {}\n}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-2:1"
+          }
+        ],
+        "domain": "0:0-2:1"
+      },
+      {
+        "targets": [
+          {
+            "content": "0:12-2:0"
+          }
+        ],
+        "domain": "0:12-2:0"
+      },
+      {
+        "targets": [
+          {
+            "content": "1:9-1:35"
+          }
+        ],
+        "domain": "1:9-1:35"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/value/value.argument.formal.constructor",
+    "languageId": "swift",
+    "facet": "value.argument.formal.constructor",
+    "code": "struct Foo {\n    init(aaa: Int = 0, bbb: Int = 1) {}\n}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "1:20-1:21",
+            "removal": "1:17-1:21"
+          }
+        ],
+        "domain": "1:9-1:21"
+      },
+      {
+        "targets": [
+          {
+            "content": "1:34-1:35",
+            "removal": "1:31-1:35"
+          }
+        ],
+        "domain": "1:23-1:35"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/value/value.argument.formal.iteration",
+    "languageId": "swift",
+    "facet": "value.argument.formal.iteration",
+    "code": "func foo(aaa: Int = 0, bbb: Int = 1) {}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:39"
+          }
+        ],
+        "domain": "0:0-0:39"
+      },
+      {
+        "targets": [
+          {
+            "content": "0:9-0:35"
+          }
+        ],
+        "domain": "0:9-0:35"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/value/value.argument.formal.method.iteration",
+    "languageId": "swift",
+    "facet": "value.argument.formal.method.iteration",
+    "code": "struct Foo {\n    func bar(aaa: Int = 0, bbb: Int = 1) {}\n}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-2:1"
+          }
+        ],
+        "domain": "0:0-2:1"
+      },
+      {
+        "targets": [
+          {
+            "content": "0:12-2:0"
+          }
+        ],
+        "domain": "0:12-2:0"
+      },
+      {
+        "targets": [
+          {
+            "content": "1:13-1:39"
+          }
+        ],
+        "domain": "1:13-1:39"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/value/value.argument.formal.method",
+    "languageId": "swift",
+    "facet": "value.argument.formal.method",
+    "code": "struct Foo {\n    func bar(aaa: Int = 0, bbb: Int = 1) {}\n}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "1:24-1:25",
+            "removal": "1:21-1:25"
+          }
+        ],
+        "domain": "1:13-1:25"
+      },
+      {
+        "targets": [
+          {
+            "content": "1:38-1:39",
+            "removal": "1:35-1:39"
+          }
+        ],
+        "domain": "1:27-1:39"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/value/value.argument.formal",
+    "languageId": "swift",
+    "facet": "value.argument.formal",
+    "code": "func foo(aaa: Int = 0, bbb: Int = 1) {}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:20-0:21",
+            "removal": "0:17-0:21"
+          }
+        ],
+        "domain": "0:9-0:21"
+      },
+      {
+        "targets": [
+          {
+            "content": "0:34-0:35",
+            "removal": "0:31-0:35"
+          }
+        ],
+        "domain": "0:23-0:35"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/value/value.assignment.compound",
+    "languageId": "swift",
+    "facet": "value.assignment.compound",
+    "code": "foo += 1",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:7-0:8",
+            "removal": "0:3-0:8"
+          }
+        ],
+        "domain": "0:0-0:8"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/value/value.assignment.destructuring",
+    "languageId": "swift",
+    "facet": "value.assignment.destructuring",
+    "code": "(foo, bar) = (0, 1)",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:13-0:19",
+            "removal": "0:10-0:19"
+          }
+        ],
+        "domain": "0:0-0:19"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/value/value.assignment",
+    "languageId": "swift",
+    "facet": "value.assignment",
+    "code": "foo = 0",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:6-0:7",
+            "removal": "0:3-0:7"
+          }
+        ],
+        "domain": "0:0-0:7"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/value/value.constant",
+    "languageId": "swift",
+    "facet": "value.constant",
+    "code": "let foo = 0",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:10-0:11",
+            "removal": "0:7-0:11"
+          }
+        ],
+        "domain": "0:0-0:11"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/value/value.field.class",
+    "languageId": "swift",
+    "facet": "value.field.class",
+    "code": "struct Foo {\n  var bar = 0\n  var baz: Int = 0\n}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "1:12-1:13",
+            "removal": "1:9-1:13"
+          }
+        ],
+        "domain": "1:2-1:13"
+      },
+      {
+        "targets": [
+          {
+            "content": "2:17-2:18",
+            "removal": "2:14-2:18"
+          }
+        ],
+        "domain": "2:2-2:18"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/value/value.field.enum",
+    "languageId": "swift",
+    "facet": "value.field.enum",
+    "code": "enum Foo: Int {\n  case bar = 0\n}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "1:13-1:14",
+            "removal": "1:10-1:14"
+          }
+        ],
+        "domain": "1:2-1:14"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/value/value.foreach",
+    "languageId": "swift",
+    "facet": "value.foreach",
+    "code": "for v in values {}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:9-0:15",
+            "removal": "0:9-0:16"
+          }
+        ],
+        "domain": "0:0-0:18"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/value/value.iteration.block",
+    "languageId": "swift",
+    "facet": "value.iteration.block",
+    "code": "struct Foo {\n    func bar() { }\n}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-2:1"
+          }
+        ],
+        "domain": "0:0-2:1"
+      },
+      {
+        "targets": [
+          {
+            "content": "0:12-2:0"
+          }
+        ],
+        "domain": "0:12-2:0"
+      },
+      {
+        "targets": [
+          {
+            "content": "1:16-1:17"
+          }
+        ],
+        "domain": "1:16-1:17"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/value/value.iteration.block2",
+    "languageId": "swift",
+    "facet": "value.iteration.block",
+    "code": "func foo() { }",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:14"
+          }
+        ],
+        "domain": "0:0-0:14"
+      },
+      {
+        "targets": [
+          {
+            "content": "0:12-0:13"
+          }
+        ],
+        "domain": "0:12-0:13"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/value/value.iteration.block3",
+    "languageId": "swift",
+    "facet": "value.iteration.block",
+    "code": "if true { }\nelse if false { }\nelse { }",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-2:8"
+          }
+        ],
+        "domain": "0:0-2:8"
+      },
+      {
+        "targets": [
+          {
+            "content": "0:9-0:10"
+          }
+        ],
+        "domain": "0:9-0:10"
+      },
+      {
+        "targets": [
+          {
+            "content": "1:15-1:16"
+          }
+        ],
+        "domain": "1:15-1:16"
+      },
+      {
+        "targets": [
+          {
+            "content": "2:6-2:7"
+          }
+        ],
+        "domain": "2:6-2:7"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/value/value.iteration.block4",
+    "languageId": "swift",
+    "facet": "value.iteration.block",
+    "code": "while true { }",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:14"
+          }
+        ],
+        "domain": "0:0-0:14"
+      },
+      {
+        "targets": [
+          {
+            "content": "0:12-0:13"
+          }
+        ],
+        "domain": "0:12-0:13"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/value/value.iteration.class",
+    "languageId": "swift",
+    "facet": "value.iteration.class",
+    "code": "struct Foo { }",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:14"
+          }
+        ],
+        "domain": "0:0-0:14"
+      },
+      {
+        "targets": [
+          {
+            "content": "0:12-0:13"
+          }
+        ],
+        "domain": "0:12-0:13"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/value/value.iteration.document",
+    "languageId": "swift",
+    "facet": "value.iteration.document",
+    "code": "\nvar foo: Int\n",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-2:0"
+          }
+        ],
+        "domain": "0:0-2:0"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/value/value.iteration.enum",
+    "languageId": "swift",
+    "facet": "value.iteration.enum",
+    "code": "enum Foo { }",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:12"
+          }
+        ],
+        "domain": "0:0-0:12"
+      },
+      {
+        "targets": [
+          {
+            "content": "0:10-0:11"
+          }
+        ],
+        "domain": "0:10-0:11"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/value/value.mapPair.iteration",
+    "languageId": "swift",
+    "facet": "value.mapPair.iteration",
+    "code": "[foo: 0, bar: 1]",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:0-0:16"
+          }
+        ],
+        "domain": "0:0-0:16"
+      },
+      {
+        "targets": [
+          {
+            "content": "0:1-0:15"
+          }
+        ],
+        "domain": "0:1-0:15"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/value/value.mapPair",
+    "languageId": "swift",
+    "facet": "value.mapPair",
+    "code": "[aaa: 0, bbb: 1]",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:6-0:7",
+            "removal": "0:4-0:7"
+          }
+        ],
+        "domain": "0:1-0:7"
+      },
+      {
+        "targets": [
+          {
+            "content": "0:14-0:15",
+            "removal": "0:12-0:15"
+          }
+        ],
+        "domain": "0:9-0:15"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/value/value.return.lambda",
+    "languageId": "swift",
+    "facet": "value.return.lambda",
+    "code": "{ () -> Int in 0 }",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:15-0:16",
+            "removal": "0:15-0:17"
+          }
+        ],
+        "domain": "0:0-0:18"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/value/value.return",
+    "languageId": "swift",
+    "facet": "value.return",
+    "code": "func foo() {\n    return 0\n}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "1:11-1:12",
+            "removal": "1:10-1:12"
+          }
+        ],
+        "domain": "1:4-1:12"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/value/value.switch",
+    "languageId": "swift",
+    "facet": "value.switch",
+    "code": "switch value {}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:7-0:12",
+            "removal": "0:7-0:13"
+          }
+        ],
+        "domain": "0:0-0:15"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/value/value.throw",
+    "languageId": "swift",
+    "facet": "value.throw",
+    "code": "func foo() throws {\n    throw Error\n}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "1:10-1:15",
+            "removal": "1:9-1:15"
+          }
+        ],
+        "domain": "1:4-1:15"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/value/value.typeAlias",
+    "languageId": "swift",
+    "facet": "value.typeAlias",
+    "code": "typealias Foo = Int",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:16-0:19",
+            "removal": "0:13-0:19"
+          }
+        ],
+        "domain": "0:0-0:19"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/value/value.variable.destructuring",
+    "languageId": "swift",
+    "facet": "value.variable.destructuring",
+    "code": "let (foo, bar) = (0, 1)",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:17-0:23",
+            "removal": "0:14-0:23"
+          }
+        ],
+        "domain": "0:0-0:23"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/value/value.variable",
+    "languageId": "swift",
+    "facet": "value.variable",
+    "code": "var foo = 0",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "0:10-0:11",
+            "removal": "0:7-0:11"
+          }
+        ],
+        "domain": "0:0-0:11"
+      }
+    ]
+  },
+  {
+    "name": "scopes/swift/value/value.yield",
+    "languageId": "swift",
+    "facet": "value.yield",
+    "code": "var foo: Int {\n    _read {\n        yield 0\n    }\n}",
+    "scopes": [
+      {
+        "targets": [
+          {
+            "content": "2:14-2:15",
+            "removal": "2:13-2:15"
+          }
+        ],
+        "domain": "2:8-2:15"
       }
     ]
   },

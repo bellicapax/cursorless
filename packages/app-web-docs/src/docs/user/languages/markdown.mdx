@@ -15,15 +15,23 @@ Below are visualizations of all our scope tests for this language. These were cr
 
 #### 1. Collection item: Unenclosed multi line
 
-<i>An item in a comma-separated multi line list without enclosing delimiters. This could be multi-variable declarations, import statements, etc. Insertion delimiter should include new line.</i>
+<i>An item in a comma-separated multi-line list without enclosing delimiters. This could be multi-variable declarations, import statements, etc. Insertion delimiter should include a newline.</i>
 
 <ScopeVisualizer fixtureName="scopes/markdown/collectionItem.unenclosed.multiLine" languageId="markdown" />
+
+<ScopeVisualizer fixtureName="scopes/markdown/collectionItem.unenclosed.multiLine2" languageId="markdown" />
+
+<ScopeVisualizer fixtureName="scopes/markdown/collectionItem.unenclosed.multiLine3" languageId="markdown" />
 
 #### 2. Collection item: Unenclosed (iteration)
 
 <i>Iteration scope for items in a comma-separated list without enclosing delimiters</i>
 
 <ScopeVisualizer fixtureName="scopes/markdown/collectionItem.unenclosed.iteration" languageId="markdown" />
+
+<ScopeVisualizer fixtureName="scopes/markdown/collectionItem.unenclosed.iteration2" languageId="markdown" />
+
+<ScopeVisualizer fixtureName="scopes/markdown/collectionItem.unenclosed.iteration3" languageId="markdown" />
 
 ### Comment
 
@@ -32,6 +40,16 @@ Below are visualizations of all our scope tests for this language. These were cr
 <i>A block comment</i>
 
 <ScopeVisualizer fixtureName="scopes/markdown/comment.block" languageId="markdown" />
+
+### Interior
+
+#### 1. Interior: Cell
+
+<i>The body of a code cell in Markdown</i>
+
+<ScopeVisualizer fixtureName="scopes/markdown/interior.cell" languageId="markdown" />
+
+<ScopeVisualizer fixtureName="scopes/markdown/interior.cell2" languageId="markdown" />
 
 ### List
 
@@ -45,7 +63,7 @@ Below are visualizations of all our scope tests for this language. These were cr
 
 #### 1. Notebook cell
 
-<i>A cell in a notebook or a markdown code block</i>
+<i>A cell in a notebook or a Markdown code block</i>
 
 <ScopeVisualizer fixtureName="scopes/markdown/notebookCell" languageId="markdown" />
 
@@ -122,16 +140,6 @@ Below are visualizations of all our scope tests for this language. These were cr
 ## Internal scopes
 
 The following are internal scopes. They are not intended for user interaction or spoken use. These scopes exist solely for internal Cursorless functionality.
-
-### Interior
-
-#### 1. Interior: Cell
-
-<i>The body of a code cell in markdown</i>
-
-<ScopeVisualizer fixtureName="scopes/markdown/interior.cell" languageId="markdown" />
-
-<ScopeVisualizer fixtureName="scopes/markdown/interior.cell2" languageId="markdown" />
 
 ### Text fragment
 

@@ -223,14 +223,14 @@ export const talonScopeSupport: LanguageScopeSupportFacetMap = {
   "value.iteration.enum": notApplicable,
   "type.enum": notApplicable,
   "interior.enum": notApplicable,
-  "functionCall.enum": notApplicable,
-  "functionCallee.enum": notApplicable,
-  "argument.actual.enum.singleLine": notApplicable,
-  "argument.actual.enum.multiLine": notApplicable,
-  "argumentList.actual.enum.empty": notApplicable,
-  "argumentList.actual.enum.singleLine": notApplicable,
-  "argumentList.actual.enum.multiLine": notApplicable,
-  "argument.actual.enum.iteration": notApplicable,
+  "functionCall.enumConstant": notApplicable,
+  "functionCallee.enumConstant": notApplicable,
+  "argument.actual.enumConstant.singleLine": notApplicable,
+  "argument.actual.enumConstant.multiLine": notApplicable,
+  "argumentList.actual.enumConstant.empty": notApplicable,
+  "argumentList.actual.enumConstant.singleLine": notApplicable,
+  "argumentList.actual.enumConstant.multiLine": notApplicable,
+  "argument.actual.enumConstant.iteration": notApplicable,
 
   // Try catch
   "statement.try": notApplicable,
@@ -340,6 +340,10 @@ export const talonScopeSupport: LanguageScopeSupportFacetMap = {
   "collectionItem.unenclosed.multiLine": notApplicable,
   "collectionItem.unenclosed.iteration": notApplicable,
 
+  // Regular expression literal
+  regularExpression: notApplicable,
+  "textFragment.regularExpression": notApplicable,
+
   // Miscellaneous statements
   "statement.misc": notApplicable,
   "statement.break": notApplicable,
@@ -400,7 +404,6 @@ export const talonScopeSupport: LanguageScopeSupportFacetMap = {
   map: notApplicable,
   environment: notApplicable,
   pairDelimiter: notApplicable,
-  regularExpression: notApplicable,
   selector: notApplicable,
   unit: notApplicable,
   disqualifyDelimiter: notApplicable,

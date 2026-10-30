@@ -1,10 +1,10 @@
 import type {
   CommandServerApi,
+  HatAllocationOptions,
   HatTokenMap,
   Hats,
   IDE,
   ReadOnlyHatMap,
-  TokenHat,
 } from "@cursorless/lib-common";
 import type { TokenGraphemeSplitter } from "../tokenGraphemeSplitter";
 import type { Debug } from "./Debug";
@@ -63,12 +63,9 @@ export class HatTokenMapImpl implements HatTokenMap {
 
   /**
    * Allocate hats to the visible tokens.
-   *
-   * @param forceTokenHats If supplied, force the allocator to use these hats
-   * for the given tokens. This is used for the tutorial, and for testing.
    */
-  allocateHats(forceTokenHats?: TokenHat[]) {
-    return this.hatAllocator.allocateHats(forceTokenHats);
+  allocateHats(options?: HatAllocationOptions) {
+    return this.hatAllocator.allocateHats(options);
   }
 
   private async getActiveMap() {
@@ -138,7 +135,7 @@ export class HatTokenMapImpl implements HatTokenMap {
       await this.commandServerApi.signals.prePhrase.getVersion();
 
     if (newSignalVersion !== this.lastSignalVersion) {
-      this.debug.log("taking snapshot");
+      this.debug.log("Taking snapshot");
       this.lastSignalVersion = newSignalVersion;
 
       if (newSignalVersion != null) {

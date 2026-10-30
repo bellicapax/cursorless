@@ -32,6 +32,8 @@ sidebar_position: 4
 - [Scala](./scala.mdx)
 - [Tree-sitter query (SCM)](./scm.mdx)
 - [SCSS](./scss.mdx)
+- [Shell Script](./shellscript.mdx)
+- [Swift](./swift.mdx)
 - [Talon](./talon.mdx)
 - [Talon list](./talon-list.mdx)
 - [TypeScript](./typescript.mdx)
