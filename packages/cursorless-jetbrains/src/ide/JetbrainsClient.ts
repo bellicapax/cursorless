@@ -45,4 +45,6 @@ export interface JetbrainsClient {
   readTutorialFixture(tutorialId: string, fixtureName: string): string;
   /** The tutorial's state changed: the Cursorless tool window shows it */
   tutorialStateChanged(stateJson: string): void;
+  /** The Scopes list changed, as JSON {languageId, items}: the Cursorless tool window shows it */
+  scopeListChanged(scopeListJson: string): void;
 }

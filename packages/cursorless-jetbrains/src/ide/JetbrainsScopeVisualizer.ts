@@ -27,6 +27,9 @@ export class JetbrainsScopeVisualizer {
   private highlightIds: string[] = [];
   private renderedEditorIds = new Set<string>();
 
+  /** The scope type shown, if any */
+  scopeType: ScopeType | undefined;
+
   /** Called with the scope type shown, or undefined when hidden, so the tutorial can wait for "visualize" */
   onDidChangeScopeType: ((scopeType: ScopeType | undefined) => void) | undefined;
 
@@ -37,6 +40,7 @@ export class JetbrainsScopeVisualizer {
 
   start(scopeType: ScopeType, visualizationType: VisualizationType) {
     this.stop();
+    this.scopeType = scopeType;
     this.onDidChangeScopeType?.(scopeType);
 
     const nestedId = `scopeVisualizer.${visualizationType}`;
@@ -79,6 +83,7 @@ export class JetbrainsScopeVisualizer {
   }
 
   stop() {
+    this.scopeType = undefined;
     if (this.listener != null) {
       this.onDidChangeScopeType?.(undefined);
     }

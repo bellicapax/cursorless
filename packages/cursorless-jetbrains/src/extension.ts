@@ -7,6 +7,7 @@ import { JetbrainsTreeSitterQueryProvider } from "./ide/JetbrainsTreeSitterQuery
 import { pathJoin } from "./ide/pathJoin";
 import { JetbrainsCommandServer } from "./ide/JetbrainsCommandServer";
 import { JetbrainsSnippets } from "./ide/JetbrainsSnippets";
+import { JetbrainsScopeList } from "./ide/JetbrainsScopeList";
 import { JetbrainsScopeVisualizer } from "./ide/JetbrainsScopeVisualizer";
 import { TutorialImpl } from "@cursorless/lib-tutorial";
 import { JetbrainsTutorialContentProvider } from "./ide/JetbrainsTutorialContentProvider";
@@ -60,9 +61,19 @@ export async function activate(
   tutorial.onState((state) =>
     plugin.client.tutorialStateChanged(JSON.stringify(state)),
   );
-  plugin.scopeVisualizer.onDidChangeScopeType = (scopeType) =>
+  // VS Code's "Scopes" view, which the Cursorless tool window shows
+  const scopeList = new JetbrainsScopeList(
+    plugin.ide,
+    plugin.client,
+    engine.scopeProvider,
+    plugin.scopeVisualizer,
+  );
+  plugin.scopeVisualizer.onDidChangeScopeType = (scopeType) => {
     tutorial.scopeTypeVisualized(scopeType);
+    scopeList.scopeTypeChanged();
+  };
   plugin.tutorial = tutorial;
+  plugin.scopeList = scopeList;
   console.log("activate completed");
   return engine;
 }

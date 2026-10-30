@@ -14,6 +14,7 @@ import type { JetbrainsClient } from "./JetbrainsClient";
 import { JetbrainsHats } from "./JetbrainsHats";
 import type { JetbrainsIDE } from "./JetbrainsIDE";
 import { JetbrainsTalonSpokenForms } from "./JetbrainsTalonSpokenForms";
+import type { JetbrainsScopeList } from "./JetbrainsScopeList";
 import type { JetbrainsScopeVisualizer } from "./JetbrainsScopeVisualizer";
 
 export class JetbrainsPlugin {
@@ -24,6 +25,9 @@ export class JetbrainsPlugin {
 
   /** Set by activate, once the engine exists */
   tutorial: Tutorial | undefined;
+
+  /** Set by activate, once the engine's scope provider exists */
+  scopeList: JetbrainsScopeList | undefined;
 
   constructor(
     readonly client: JetbrainsClient,
@@ -65,6 +69,11 @@ export class JetbrainsPlugin {
   /** "cursorless docs" opened the documentation, which a tutorial step may be waiting for */
   documentationOpened(): void {
     this.tutorial?.documentationOpened();
+  }
+
+  /** The Cursorless tool window's Scopes list came on screen or went off it */
+  setScopeListVisible(visible: boolean): void {
+    this.scopeList?.setVisible(visible);
   }
 
   tutorialState(): TutorialState {
